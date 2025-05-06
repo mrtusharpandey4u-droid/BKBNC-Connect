@@ -1,3 +1,4 @@
+
 'use server';
 /**
  * @fileOverview Flow to answer student questions about B. K. Birla Night College Kalyan.
@@ -42,6 +43,7 @@ const prompt = ai.definePrompt({
   - Type: Night college, catering often to working students.
   - Known for: Providing educational opportunities for those who cannot attend regular day college.
   - Official Profile Page: https://bkbirlanightcollegekalyan.com/profile.aspx
+  - College Code: 840 (This is a common piece of information students might ask for, especially for university forms or applications).
 
   Instructions:
   1.  Use the provided context and general knowledge about Indian colleges affiliated with the University of Mumbai.
@@ -50,6 +52,7 @@ const prompt = ai.definePrompt({
   4.  If you don't know the answer or the question is outside the scope of the college, politely state that you don't have the information.
   5.  Maintain a helpful and professional tone.
   6.  If the student asks about the college's official profile, "about us", history, vision, mission, or similar detailed institutional information, direct them to the official college profile page. For example, you can say: "You can find detailed information about the college's profile, history, vision, and mission on their official website: https://bkbirlanightcollegekalyan.com/profile.aspx".
+  7.  If the student asks for the "College Code", respond with "The College Code for B. K. Birla Night College Kalyan is 840."
 
   Student Question: {{{question}}}
 
@@ -72,3 +75,6 @@ const answerStudentQuestionFlow = ai.defineFlow(
     return output;
   }
 );
+
+
+    
