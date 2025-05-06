@@ -91,6 +91,39 @@ const predefinedQuestions = [
   },
 ];
 
+// Helper function to render text with clickable links
+const renderTextWithLinks = (text: string) => {
+  const urlRegex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+  const parts = text.split(urlRegex);
+
+  return parts.map((part, index) => {
+    if (part && part.match(urlRegex)) {
+      let href = part;
+      // Ensure the URL has a protocol for the href attribute
+      if (!href.startsWith('http://') && !href.startsWith('https://') && !href.startsWith('ftp://') && !href.startsWith('file://')) {
+        // Defaulting to https if no protocol is present and it looks like a web URL
+        if(href.includes('.')) { // Basic check for domain-like structure
+            href = 'https://' + href;
+        }
+      }
+      return (
+        <a
+          key={`${part}-${index}`} // Using part and index for a more unique key
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary underline hover:text-primary/80"
+        >
+          {part}
+        </a>
+      );
+    }
+    // Return text part, ensuring it's a valid React child (string or ReactElement)
+    return part || '';
+  }).filter(part => part !== ''); // Filter out any empty strings that might result from split
+};
+
+
 function ChatInterface() {
   const [inputValue, setInputValue] = useState('');
   const [messages, setMessages] = useState<Message[]>([
@@ -253,7 +286,7 @@ function ChatInterface() {
                             : 'bg-card text-card-foreground border'
                         }`}
                       >
-                        {message.text}
+                        {renderTextWithLinks(message.text)}
                       </div>
                       {message.sender === 'user' && (
                         <Avatar className="h-8 w-8">
@@ -403,6 +436,7 @@ function LoadingSkeleton() {
     
 
     
+
 
 
 
