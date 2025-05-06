@@ -28,7 +28,8 @@ import {
   Send,
   Loader2,
   Info,
-  Code2, 
+  Code2,
+  BookOpen, // Added BookOpen icon
 } from 'lucide-react';
 import { answerStudentQuestion } from '@/ai/flows/answer-student-question';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -86,6 +87,12 @@ const predefinedQuestions = [
     label: 'What is the College Code?',
     icon: Code2,
     response: "College Code: 1122",
+  },
+  { // Added new question
+    value: 'programme-offered',
+    label: 'Programme Offered by the College?',
+    icon: BookOpen,
+    response: "1. B.A. (Political Science)\n2. B.Sc. (Chemistry)\n3. B.Sc. (Computer Science)\n4. B.Com. (General)\n5. B.Com. (Management Studies)\n6. B.Com. (Accounting & Finance)\n7. B.Com. (Financial Markets)"
   },
 ];
 
@@ -245,7 +252,7 @@ function ChatInterface() {
                         </Avatar>
                       )}
                       <div
-                        className={`rounded-lg p-3 max-w-[75%] text-sm shadow-md break-words ${ // Added break-words
+                        className={`rounded-lg p-3 max-w-[75%] text-sm shadow-md break-words whitespace-pre-wrap ${ // Added break-words and whitespace-pre-wrap
                           message.sender === 'user'
                             ? 'bg-primary text-primary-foreground'
                             : 'bg-card text-card-foreground border'
@@ -401,4 +408,5 @@ function LoadingSkeleton() {
     
 
     
+
 
