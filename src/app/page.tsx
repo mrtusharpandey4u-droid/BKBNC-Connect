@@ -75,6 +75,7 @@ const predefinedQuestions = [
     value: 'college-profile',
     label: 'Where can I find the college profile or "About Us" information?',
     icon: Info,
+    response: "About Us: https://bkbirlanightcollegekalyan.com/profile.aspx"
   },
   {
     value: 'college-code',
@@ -402,6 +403,7 @@ function LoadingSkeleton() {
     
 
     
+
 
 
 
