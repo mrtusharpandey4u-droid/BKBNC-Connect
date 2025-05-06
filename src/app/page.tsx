@@ -167,11 +167,11 @@ function ChatInterface() {
       <div className="flex flex-1 justify-center items-stretch py-4">
           {/* Changed: Added flex, flex-col, flex-1, overflow-hidden */}
           <Card className="w-full max-w-2xl shadow-lg rounded-lg flex flex-col overflow-hidden">
-            <CardHeader className="text-center pb-4 border-b"> {/* Added border-b */}
-              <CardTitle className="text-2xl font-semibold text-primary">
+            <CardHeader className="text-center pb-4 border-b bg-primary text-primary-foreground"> {/* Added bg-primary and text-primary-foreground */}
+              <CardTitle className="text-2xl font-semibold text-primary-foreground"> {/* Changed text-primary to text-primary-foreground */}
                 BKBNC Connect
               </CardTitle>
-              <p className="text-sm text-muted-foreground"> {/* Use muted-foreground for subtitle */}
+              <p className="text-sm text-primary-foreground opacity-90"> {/* Changed text-muted-foreground to text-primary-foreground and added opacity for subtlety */}
                 B. K. Birla Night College Kalyan - Simplifying Your College Journey
               </p>
             </CardHeader>
@@ -307,9 +307,9 @@ function LoadingSkeleton() {
        <div className="flex flex-1 justify-center items-stretch py-4">
           {/* Changed: Added flex, flex-col, flex-1, overflow-hidden */}
           <Card className="w-full max-w-2xl shadow-lg rounded-lg flex flex-col overflow-hidden">
-            <CardHeader className="text-center pb-4 border-b"> {/* Added border-b */}
-                <Skeleton className="h-8 w-3/4 mx-auto mb-2 rounded-md" />
-                <Skeleton className="h-4 w-1/2 mx-auto rounded-md" />
+            <CardHeader className="text-center pb-4 border-b bg-primary text-primary-foreground"> {/* Added bg-primary and text-primary-foreground for skeleton consistency */}
+                <Skeleton className="h-8 w-3/4 mx-auto mb-2 rounded-md bg-primary-foreground/20" /> {/* Adjusted skeleton color for visibility on primary bg */}
+                <Skeleton className="h-4 w-1/2 mx-auto rounded-md bg-primary-foreground/20" /> {/* Adjusted skeleton color */}
             </CardHeader>
             {/* Changed: Added flex-1, overflow-hidden */}
             <CardContent className="p-0 flex-1 overflow-hidden">
