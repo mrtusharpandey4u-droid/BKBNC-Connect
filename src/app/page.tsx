@@ -27,6 +27,7 @@ import {
   Users,
   Send,
   Loader2,
+  Info, // Added for the new question
 } from 'lucide-react';
 import { answerStudentQuestion } from '@/ai/flows/answer-student-question';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -41,7 +42,19 @@ const predefinedQuestions = [
   {
     value: 'admission-requirements',
     label: 'What are the admission requirements?',
-    icon: GraduationCap,
+    icon: GraduationCap, // Added icon
+    // Corrected response string concatenation
+    response:
+      'The admission process at our college is simple, transparent, and student-focused. Admissions are open to students from all backgrounds who meet the eligibility criteria as per university and government norms.\n\n' +
+      'Online Registration:\n' +
+      'Students must first register online through the college or university admission portal. Basic personal and academic details need to be filled out accurately.\n\n' +
+      'Document Submission:\n' +
+      'After registration, students must upload scanned copies of required documents such as:\n' +
+      '- SSC and HSC mark sheets\n' +
+      '- School/College Leaving Certificate\n' +
+      '- Caste certificate (if applicable)\n' +
+      '- Aadhar card and passport-size photograph\n' +
+      '- Gap certificate (if required)',
   },
   {
     value: 'financial-aid',
@@ -52,6 +65,11 @@ const predefinedQuestions = [
     value: 'student-life',
     label: 'Tell me about student life and clubs.',
     icon: Users,
+  },
+  {
+    value: 'college-profile',
+    label: 'Where can I find the college profile or "About Us" information?',
+    icon: Info,
   },
 ];
 
