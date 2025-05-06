@@ -23,13 +23,12 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
   GraduationCap,
-  BadgeDollarSign,
   Users,
   Send,
   Loader2,
   Info,
   Code2,
-  BookOpen, // Added BookOpen icon
+  BookOpen,
 } from 'lucide-react';
 import { answerStudentQuestion } from '@/ai/flows/answer-student-question';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -67,11 +66,6 @@ const predefinedQuestions = [
       'For any assistance, students can contact the Admission Help Desk or use our college chatbot for instant responses to queries regarding courses, fees, scholarships, and more.',
   },
   {
-    value: 'financial-aid',
-    label: 'How can I apply for financial aid?',
-    icon: BadgeDollarSign,
-  },
-  {
     value: 'student-life',
     label: 'Tell me about student life and clubs.',
     icon: Users,
@@ -88,7 +82,7 @@ const predefinedQuestions = [
     icon: Code2,
     response: "College Code: 1122",
   },
-  { // Added new question
+  {
     value: 'programme-offered',
     label: 'Programme Offered by the College?',
     icon: BookOpen,
@@ -408,5 +402,6 @@ function LoadingSkeleton() {
     
 
     
+
 
 
