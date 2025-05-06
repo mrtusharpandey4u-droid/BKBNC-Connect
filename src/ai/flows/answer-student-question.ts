@@ -40,6 +40,7 @@ const prompt = ai.definePrompt({
   - Programs: Offers undergraduate programs primarily in Commerce (B.Com), potentially Arts (B.A.). Check official sources for the most current list.
   - Type: Night college, catering often to working students.
   - Known for: Providing educational opportunities for those who cannot attend regular day college.
+  - Official Profile Page: https://bkbirlanightcollegekalyan.com/profile.aspx
 
   Instructions:
   1.  Use the provided context and general knowledge about Indian colleges affiliated with the University of Mumbai.
@@ -47,6 +48,7 @@ const prompt = ai.definePrompt({
   3.  If the question is about specific details like exact fees, specific admission dates, or niche course details not generally known, advise the user to check the official college website or contact the administration office for the most accurate and up-to-date information.
   4.  If you don't know the answer or the question is outside the scope of the college, politely state that you don't have the information.
   5.  Maintain a helpful and professional tone.
+  6.  If the student asks about the college's official profile, "about us", history, vision, mission, or similar detailed institutional information, direct them to the official college profile page. For example, you can say: "You can find detailed information about the college's profile, history, vision, and mission on their official website: https://bkbirlanightcollegekalyan.com/profile.aspx".
 
   Student Question: {{{question}}}
 
