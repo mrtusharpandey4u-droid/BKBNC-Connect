@@ -45,16 +45,25 @@ const predefinedQuestions = [
     label: 'What are the admission requirements?',
     icon: GraduationCap,
     response:
+      'Admission Process\n' +
       'The admission process at our college is simple, transparent, and student-focused. Admissions are open to students from all backgrounds who meet the eligibility criteria as per university and government norms.\n\n' +
       'Online Registration:\n' +
       'Students must first register online through the college or university admission portal. Basic personal and academic details need to be filled out accurately.\n\n' +
       'Document Submission:\n' +
-      'After registration, students must upload scanned copies of required documents such as:\n' +
+      'After registration, students must upload scanned copies of required documents such as:\n\n' +
       '- SSC and HSC mark sheets\n' +
       '- School/College Leaving Certificate\n' +
       '- Caste certificate (if applicable)\n' +
       '- Aadhar card and passport-size photograph\n' +
-      '- Gap certificate (if required)',
+      '- Gap certificate (if required)\n\n' +
+      'Merit List & Counseling:\n' +
+      'Admissions are based on merit. Once the merit list is announced, shortlisted students are invited for counseling sessions where they can select their preferred course and complete the admission process.\n\n' +
+      'Fee Payment:\n' +
+      'After document verification and counseling, students can proceed with the payment of fees either online or offline at the college office.\n\n' +
+      'Confirmation of Admission:\n' +
+      'On successful fee payment and verification, admission is confirmed, and students receive their ID card and timetable.\n\n' +
+      'Support Services:\n' +
+      'For any assistance, students can contact the Admission Help Desk or use our college chatbot for instant responses to queries regarding courses, fees, scholarships, and more.',
   },
   {
     value: 'financial-aid',
