@@ -30,6 +30,7 @@ export async function answerStudentQuestion(input: AnswerStudentQuestionInput): 
 // Define the prompt
 const prompt = ai.definePrompt({
   name: 'answerStudentQuestionPrompt',
+  model: 'googleai/gemini-1.5-flash-latest', // Specify the model to be used
   input: { schema: AnswerStudentQuestionInputSchema },
   output: { schema: AnswerStudentQuestionOutputSchema },
   prompt: `You are an AI assistant for B. K. Birla Night College Kalyan (BKBNC). Your role is to answer student questions accurately and concisely based on your knowledge about the college.
