@@ -87,7 +87,7 @@ const predefinedQuestions = [
     value: 'programme-offered',
     label: 'Programme Offered by the College?',
     icon: BookOpen,
-    response: "1. B.A. (Political Science)\n2. B.Sc. (Chemistry)\n3. B.Sc. (Computer Science)\n4. B.Com. (General)\n5. B.Com. (Management Studies)\n6. B.Com. (Accounting & Finance)\n7. B.Com. (Financial Markets)"
+    response: "1. B.A.\n2. B.Sc.\n3. B.Com.\n4. B.Com. (Management Studies)\n5. B.Com. (Accounting & Finance)\n6. B.Com. (Financial Markets)\n7. B.Sc. (Computer Science)"
   },
 ];
 
@@ -436,6 +436,7 @@ function LoadingSkeleton() {
     
 
     
+
 
 
 
