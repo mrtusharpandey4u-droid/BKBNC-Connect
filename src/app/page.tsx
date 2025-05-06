@@ -27,7 +27,8 @@ import {
   Users,
   Send,
   Loader2,
-  Info, // Added for the new question
+  Info,
+  ScrollText, // Added for new question
 } from 'lucide-react';
 import { answerStudentQuestion } from '@/ai/flows/answer-student-question';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -42,8 +43,7 @@ const predefinedQuestions = [
   {
     value: 'admission-requirements',
     label: 'What are the admission requirements?',
-    icon: GraduationCap, // Added icon
-    // Corrected response string concatenation
+    icon: GraduationCap,
     response:
       'The admission process at our college is simple, transparent, and student-focused. Admissions are open to students from all backgrounds who meet the eligibility criteria as per university and government norms.\n\n' +
       'Online Registration:\n' +
@@ -70,6 +70,11 @@ const predefinedQuestions = [
     value: 'college-profile',
     label: 'Where can I find the college profile or "About Us" information?',
     icon: Info,
+  },
+  {
+    value: 'college-history-vision',
+    label: 'Tell me about the history and vision of B. K. Birla Night College Kalyan.',
+    icon: ScrollText, // New icon for this question
   },
 ];
 
