@@ -28,8 +28,7 @@ import {
   Send,
   Loader2,
   Info,
-  ScrollText,
-  Code2, // Added for new question: College Code
+  Code2, 
 } from 'lucide-react';
 import { answerStudentQuestion } from '@/ai/flows/answer-student-question';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -81,11 +80,6 @@ const predefinedQuestions = [
     value: 'college-profile',
     label: 'Where can I find the college profile or "About Us" information?',
     icon: Info,
-  },
-  {
-    value: 'college-history-vision',
-    label: 'Tell me about the history and vision of B. K. Birla Night College Kalyan.',
-    icon: ScrollText,
   },
   {
     value: 'college-code',
@@ -407,3 +401,4 @@ function LoadingSkeleton() {
     
 
     
+
