@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState, type FormEvent, Suspense, startTransition } from 'react';
+import { useState, type FormEvent, Suspense, startTransition, useEffect, useRef } from 'react';
 import {
   Card,
   CardContent,
@@ -32,6 +32,7 @@ import { answerStudentQuestion } from '@/ai/flows/answer-student-question';
 import { Skeleton } from '@/components/ui/skeleton';
 
 interface Message {
+  id: string;
   sender: 'user' | 'ai';
   text: string;
 }
@@ -58,11 +59,27 @@ function ChatInterface() {
   const [inputValue, setInputValue] = useState('');
   const [messages, setMessages] = useState<Message[]>([
     {
+      id: crypto.randomUUID(),
       sender: 'ai',
       text: 'Welcome to BKBNC Connect! How can I help you today? Ask me anything about B. K. Birla Night College Kalyan, or select a predefined question.',
     },
   ]);
   const [isLoading, setIsLoading] = useState(false);
+  const scrollAreaRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    if (scrollAreaRef.current) {
+        const scrollableViewport = scrollAreaRef.current.querySelector('div[data-radix-scroll-area-viewport]');
+        if (scrollableViewport) {
+            scrollableViewport.scrollTop = scrollableViewport.scrollHeight;
+        }
+    }
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
 
   const handlePredefinedQuestionSelect = (value: string) => {
     const selectedQuestion = predefinedQuestions.find(
@@ -86,9 +103,10 @@ function ChatInterface() {
 
     if (!userQuestion.trim()) return;
 
+    const userMessageId = crypto.randomUUID();
     const newMessages: Message[] = [
       ...messages,
-      { sender: 'user', text: userQuestion },
+      { id: userMessageId, sender: 'user', text: userQuestion },
     ];
     setMessages(newMessages);
     setInputValue('');
@@ -97,15 +115,16 @@ function ChatInterface() {
     startTransition(async () => {
         try {
           const response = await answerStudentQuestion({ question: userQuestion });
-          setMessages([
-            ...newMessages,
-            { sender: 'ai', text: response.answer },
+          setMessages((prevMessages) => [
+            ...prevMessages,
+            { id: crypto.randomUUID(), sender: 'ai', text: response.answer },
           ]);
         } catch (error) {
           console.error('Error fetching AI answer:', error);
-          setMessages([
-            ...newMessages,
+          setMessages((prevMessages) => [
+            ...prevMessages,
             {
+              id: crypto.randomUUID(),
               sender: 'ai',
               text: 'Sorry, I encountered an error trying to answer your question. Please try again.',
             },
@@ -113,7 +132,7 @@ function ChatInterface() {
         } finally {
           setIsLoading(false);
         }
-    })
+    });
   };
 
 
@@ -124,16 +143,16 @@ function ChatInterface() {
           <CardTitle className="text-2xl font-semibold text-primary">
             BKBNC Connect
           </CardTitle>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-primary">
             B. K. Birla Night College Kalyan - Simplifying Your College Journey
           </p>
         </CardHeader>
         <CardContent className="p-0">
-          <ScrollArea className="h-[50vh] w-full p-4 border-t border-b">
-            <div className="space-y-4">
-              {messages.map((message, index) => (
+          <ScrollArea className="h-[50vh] w-full border-t border-b" ref={scrollAreaRef}>
+            <div className="p-4 space-y-4">
+              {messages.map((message) => (
                 <div
-                  key={index}
+                  key={message.id}
                   className={`flex items-start gap-3 ${
                     message.sender === 'user' ? 'justify-end' : ''
                   }`}
@@ -149,10 +168,10 @@ function ChatInterface() {
                     </Avatar>
                   )}
                   <div
-                    className={`rounded-lg p-3 max-w-[75%] text-sm ${
+                    className={`rounded-lg p-3 max-w-[75%] text-sm shadow-md ${
                       message.sender === 'user'
                         ? 'bg-primary text-primary-foreground'
-                        : 'bg-secondary text-secondary-foreground'
+                        : 'bg-card text-card-foreground border'
                     }`}
                   >
                     {message.text}
@@ -160,7 +179,7 @@ function ChatInterface() {
                   {message.sender === 'user' && (
                     <Avatar className="h-8 w-8">
                       <AvatarImage
-                        src="https://picsum.photos/40/40"
+                        src="https://picsum.photos/41/41" // Different from AI avatar
                         alt="User Avatar"
                          data-ai-hint="person student"
                       />
@@ -179,9 +198,9 @@ function ChatInterface() {
                      />
                      <AvatarFallback>AI</AvatarFallback>
                    </Avatar>
-                   <div className="rounded-lg p-3 bg-secondary text-secondary-foreground flex items-center space-x-2">
-                     <Loader2 className="h-4 w-4 animate-spin" />
-                     <span>Thinking...</span>
+                   <div className="rounded-lg p-3 bg-card text-card-foreground border shadow-md flex items-center space-x-2">
+                     <Loader2 className="h-4 w-4 animate-spin text-primary" />
+                     <span className="text-sm">Thinking...</span>
                    </div>
                  </div>
                )}
@@ -190,19 +209,19 @@ function ChatInterface() {
         </CardContent>
         <CardFooter className="p-4 flex flex-col items-start gap-4">
           <div className="w-full">
-            <Label htmlFor="predefined-questions" className="mb-2 block text-sm font-medium">
+            <Label htmlFor="predefined-questions" className="mb-2 block text-sm font-medium text-foreground">
               Or select a question:
             </Label>
-             <Suspense fallback={<Skeleton className="h-10 w-full" />}>
-                 <Select onValueChange={handlePredefinedQuestionSelect}>
-                     <SelectTrigger id="predefined-questions" className="w-full">
+             <Suspense fallback={<Skeleton className="h-10 w-full rounded-md" />}>
+                 <Select onValueChange={handlePredefinedQuestionSelect} disabled={isLoading}>
+                     <SelectTrigger id="predefined-questions" className="w-full rounded-md shadow-sm">
                         <SelectValue placeholder="Select a predefined question..." />
                      </SelectTrigger>
                      <SelectContent>
                          {predefinedQuestions.map((q) => (
                             <SelectItem key={q.value} value={q.value}>
                                  <div className="flex items-center gap-2">
-                                    <q.icon className="h-4 w-4 text-muted-foreground" />
+                                    <q.icon className="h-4 w-4 text-primary" />
                                     <span>{q.label}</span>
                                  </div>
                              </SelectItem>
@@ -220,11 +239,11 @@ function ChatInterface() {
               placeholder="Type your question here..."
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              className="flex-1"
+              className="flex-1 rounded-md shadow-sm"
               autoComplete="off"
               disabled={isLoading}
             />
-            <Button type="submit" size="icon" disabled={isLoading || !inputValue.trim()}>
+            <Button type="submit" size="icon" disabled={isLoading || !inputValue.trim()} className="rounded-md shadow-sm">
               {isLoading ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
               ) : (
@@ -253,12 +272,12 @@ function LoadingSkeleton() {
     <div className="flex min-h-screen items-center justify-center p-4 bg-background">
       <Card className="w-full max-w-2xl shadow-lg rounded-lg">
         <CardHeader className="text-center pb-4">
-            <Skeleton className="h-8 w-3/4 mx-auto mb-2" />
-            <Skeleton className="h-4 w-1/2 mx-auto" />
+            <Skeleton className="h-8 w-3/4 mx-auto mb-2 rounded-md" />
+            <Skeleton className="h-4 w-1/2 mx-auto rounded-md" />
         </CardHeader>
         <CardContent className="p-0">
-          <ScrollArea className="h-[50vh] w-full p-4 border-t border-b">
-            <div className="space-y-4">
+          <ScrollArea className="h-[50vh] w-full border-t border-b">
+           <div className="p-4 space-y-4">
               {/* Skeleton for AI message */}
               <div className="flex items-start gap-3">
                 <Skeleton className="h-8 w-8 rounded-full" />
@@ -278,12 +297,12 @@ function LoadingSkeleton() {
         </CardContent>
         <CardFooter className="p-4 flex flex-col items-start gap-4">
            <div className="w-full space-y-2">
-             <Skeleton className="h-4 w-1/4" />
-             <Skeleton className="h-10 w-full" />
+             <Skeleton className="h-4 w-1/4 rounded-md" />
+             <Skeleton className="h-10 w-full rounded-md" />
            </div>
            <div className="flex w-full items-center gap-2">
-             <Skeleton className="h-10 flex-1" />
-             <Skeleton className="h-10 w-10" />
+             <Skeleton className="h-10 flex-1 rounded-md" />
+             <Skeleton className="h-10 w-10 rounded-md" />
            </div>
         </CardFooter>
       </Card>
