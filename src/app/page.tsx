@@ -65,6 +65,7 @@ const predefinedQuestions = [
     value: 'student-life',
     label: 'Tell me about student life and clubs.',
     icon: Users,
+    response: "Life at our college is vibrant, enriching, and thoughtfully designed to support every student's growth, especially working students who benefit from convenient class timings. With a faculty that's not just qualified but deeply committed, students receive quality education in a secure, inclusive environment. The campus buzzes with energy—from well-equipped science labs that spark innovation, to active participation in state and national-level platforms like Aavishkar, Ideathon (Mumbai), RT-MSSU Ideation, and SBI Youth Ideation. Beyond academics, students engage in a dynamic mix of co-curricular and extracurricular activities including Sports, NCC, NSS, and cultural fests, shaping holistic development. The college also offers scholarships through management, easing financial burdens for many. A strong Training and Placement Cell prepares students for the real world, while the Mpower Cell provides personal counseling to ensure mental well-being. Altogether, student life here is a balanced blend of learning, leadership, and lifelong memories."
   },
   {
     value: 'college-profile',
@@ -128,7 +129,20 @@ function ChatInterface() {
       (q) => q.value === value
     );
     if (selectedQuestion) {
-      handleSubmit(selectedQuestion.label);
+        if (selectedQuestion.response) {
+             // If there's a canned response, use it directly
+            const userMessageId = crypto.randomUUID();
+            const aiMessageId = crypto.randomUUID();
+            setMessages((prevMessages) => [
+                ...prevMessages,
+                { id: userMessageId, sender: 'user', text: selectedQuestion.label },
+                { id: aiMessageId, sender: 'ai', text: selectedQuestion.response },
+            ]);
+            requestAnimationFrame(scrollToBottom);
+        } else {
+            // Otherwise, send to AI
+            handleSubmit(selectedQuestion.label);
+        }
     }
   };
 
@@ -373,3 +387,5 @@ function LoadingSkeleton() {
   );
 }
 
+
+    
