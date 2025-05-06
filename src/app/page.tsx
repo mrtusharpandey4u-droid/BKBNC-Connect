@@ -91,7 +91,7 @@ const predefinedQuestions = [
     value: 'college-code',
     label: 'What is the College Code?',
     icon: Code2,
-    // This question will be handled by the AI
+    response: "College Code: 1122",
   },
 ];
 
