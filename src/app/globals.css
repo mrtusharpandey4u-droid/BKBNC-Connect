@@ -43,11 +43,11 @@ body {
     --sidebar-ring: 240 60% 30%; /* Match ring */
   }
   .dark {
-    --background: 240 10% 10%; /* Darker Navy */
+    --background: 240 30% 12%; /* Dark Navy */
     --foreground: 0 0% 98%; /* White */
-    --card: 240 10% 12%; /* Very Dark Navy */
+    --card: 240 25% 16%; /* Slightly Lighter Dark Navy */
     --card-foreground: 0 0% 98%; /* White */
-    --popover: 240 10% 12%; /* Very Dark Navy */
+    --popover: 240 25% 16%; /* Slightly Lighter Dark Navy */
     --popover-foreground: 0 0% 98%; /* White */
     --primary: 0 0% 98%; /* White */
     --primary-foreground: 240 60% 15%; /* Dark Navy */
@@ -59,21 +59,21 @@ body {
     --accent-foreground: 0 0% 98%; /* White */
     --destructive: 0 62.8% 30.6%; /* Dark Red */
     --destructive-foreground: 0 0% 98%; /* Light */
-    --border: 210 10% 30%; /* Dark Grey Border */
-    --input: 210 10% 30%; /* Dark Grey Input Border */
+    --border: 240 20% 30%; /* Navy Grey Border */
+    --input: 240 20% 30%; /* Navy Grey Input Border */
     --ring: 0 0% 83.1%; /* Lighter Grey */
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-    --sidebar-background: 240 10% 10%; /* Match dark background */
+    --sidebar-background: 240 30% 12%; /* Match dark background */
     --sidebar-foreground: 0 0% 98%; /* Match dark foreground */
     --sidebar-primary: 0 0% 98%; /* Match dark primary */
     --sidebar-primary-foreground: 240 60% 15%; /* Match dark primary-foreground */
     --sidebar-accent: 210 10% 20%; /* Match dark accent */
     --sidebar-accent-foreground: 0 0% 98%; /* Match dark accent-foreground */
-    --sidebar-border: 210 10% 30%; /* Match dark border */
+    --sidebar-border: 240 20% 30%; /* Match dark border */
     --sidebar-ring: 0 0% 83.1%; /* Match dark ring */
   }
 }
