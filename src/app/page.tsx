@@ -132,13 +132,24 @@ function ChatInterface() {
 
   useEffect(() => {
     // Ensure this runs only on the client
-    setMessages([
-      {
-        id: crypto.randomUUID(),
-        sender: 'ai',
-        text: 'Welcome to BKBNC Connect! How can I help you today? Ask me anything about B. K. Birla Night College Kalyan, or select a predefined question.',
-      },
-    ]);
+    if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+        setMessages([
+          {
+            id: crypto.randomUUID(),
+            sender: 'ai',
+            text: 'Welcome to BKBNC Connect! How can I help you today? Ask me anything about B. K. Birla Night College Kalyan, or select a predefined question.',
+          },
+        ]);
+    } else {
+        // Fallback for environments where crypto.randomUUID is not available during SSR/initial client render
+        setMessages([
+            {
+              id: Math.random().toString(36).substring(2), // Simple unique enough ID
+              sender: 'ai',
+              text: 'Welcome to BKBNC Connect! How can I help you today? Ask me anything about B. K. Birla Night College Kalyan, or select a predefined question.',
+            },
+          ]);
+    }
   }, []);
 
 
@@ -174,9 +185,9 @@ function ChatInterface() {
       (q) => q.value === value
     );
     if (selectedQuestion) {
+        const userMessageId = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2);
         if (selectedQuestion.response) {
-            const userMessageId = crypto.randomUUID();
-            const aiMessageId = crypto.randomUUID();
+            const aiMessageId = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2);
             setMessages((prevMessages) => [
                 ...prevMessages,
                 { id: userMessageId, sender: 'user', text: selectedQuestion.label },
@@ -202,7 +213,7 @@ function ChatInterface() {
 
     if (!userQuestion.trim()) return;
 
-    const userMessageId = crypto.randomUUID();
+    const userMessageId = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2);
     setMessages((prevMessages) => [
         ...prevMessages,
         { id: userMessageId, sender: 'user', text: userQuestion },
@@ -215,16 +226,18 @@ function ChatInterface() {
     startTransition(async () => {
         try {
           const response = await answerStudentQuestion({ question: userQuestion });
+          const aiMessageId = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2);
           setMessages((prevMessages) => [
             ...prevMessages,
-            { id: crypto.randomUUID(), sender: 'ai', text: response.answer },
+            { id: aiMessageId, sender: 'ai', text: response.answer },
           ]);
         } catch (error) {
           console.error('Error fetching AI answer:', error);
+          const errorAiMessageId = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2);
           setMessages((prevMessages) => [
             ...prevMessages,
             {
-              id: crypto.randomUUID(),
+              id: errorAiMessageId,
               sender: 'ai',
               text: 'Sorry, I encountered an error trying to answer your question. Please try again.',
             },
@@ -238,8 +251,8 @@ function ChatInterface() {
 
 
   return (
-    <div className="flex h-screen flex-col items-center justify-center p-2 sm:p-4 bg-gradient-to-br from-background to-muted">
-      <Card className="w-full max-w-2xl shadow-xl rounded-xl flex flex-col overflow-hidden h-full animate-in fade-in zoom-in-95 duration-300 ease-out">
+    <div className="flex h-screen flex-col items-center justify-center p-2 sm:p-4 bg-gradient-to-br from-secondary via-background to-muted">
+      <Card className="w-full max-w-2xl shadow-xl rounded-xl flex flex-col overflow-hidden h-full animate-in fade-in zoom-in-95 duration-300 ease-out bg-card">
         <CardHeader className="flex flex-row items-center space-x-4 p-4 border-b bg-primary text-primary-foreground">
           <Avatar className="h-12 w-12">
             <AvatarImage
@@ -258,7 +271,7 @@ function ChatInterface() {
             </p>
           </div>
         </CardHeader>
-        <CardContent className="p-0 flex-1 overflow-hidden">
+        <CardContent className="p-0 flex-1 overflow-hidden bg-card">
           <ScrollArea className="h-full w-full" ref={scrollAreaRef}>
             <div className="p-4 space-y-4">
               {messages.map((message) => (
@@ -272,7 +285,7 @@ function ChatInterface() {
                     className={`rounded-lg p-3 max-w-[80%] text-sm shadow-md break-words whitespace-pre-wrap ${
                       message.sender === 'user'
                         ? 'bg-primary text-primary-foreground'
-                        : 'bg-card text-card-foreground border'
+                        : 'bg-muted text-muted-foreground border'
                     }`}
                   >
                     {renderTextWithLinks(message.text)}
@@ -281,7 +294,7 @@ function ChatInterface() {
               ))}
                {isLoading && (
                  <div className="flex items-end gap-3 justify-start animate-in fade-in duration-300">
-                   <div className="rounded-lg p-3 bg-card text-card-foreground border shadow-md flex items-center space-x-2">
+                   <div className="rounded-lg p-3 bg-muted text-muted-foreground border shadow-md flex items-center space-x-2">
                      <Loader2 className="h-5 w-5 animate-spin text-primary" />
                      <span className="text-sm">Thinking...</span>
                    </div>
@@ -290,23 +303,23 @@ function ChatInterface() {
             </div>
           </ScrollArea>
         </CardContent>
-        <CardFooter className="p-4 flex flex-col items-start gap-4 border-t bg-background/50">
+        <CardFooter className="p-4 flex flex-col items-start gap-4 border-t bg-primary">
           <div className="w-full">
-            <Label htmlFor="predefined-questions" className="mb-2 block text-sm font-medium text-foreground/90">
+            <Label htmlFor="predefined-questions" className="mb-2 block text-sm font-medium text-primary-foreground/90">
               Or select a question:
             </Label>
-             <Suspense fallback={<Skeleton className="h-10 w-full rounded-lg" />}>
+             <Suspense fallback={<Skeleton className="h-10 w-full rounded-lg bg-primary-foreground/20" />}>
                  <Select onValueChange={handlePredefinedQuestionSelect} disabled={isLoading} >
                      <SelectTrigger
                         id="predefined-questions"
-                        className="w-full rounded-lg shadow-sm"
+                        className="w-full rounded-lg shadow-sm bg-card text-card-foreground"
                         suppressHydrationWarning={true}
                      >
                         <SelectValue placeholder="Select a predefined question..." />
                      </SelectTrigger>
-                     <SelectContent className="rounded-lg shadow-lg">
+                     <SelectContent className="rounded-lg shadow-lg bg-card text-card-foreground">
                          {predefinedQuestions.map((q) => (
-                            <SelectItem key={q.value} value={q.value} className="cursor-pointer">
+                            <SelectItem key={q.value} value={q.value} className="cursor-pointer hover:bg-accent focus:bg-accent">
                                  <div className="flex items-center gap-3">
                                     <q.icon className="h-5 w-5 text-primary" />
                                     <span>{q.label}</span>
@@ -326,15 +339,16 @@ function ChatInterface() {
               placeholder="Type your question here..."
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              className="flex-1 rounded-lg shadow-sm"
+              className="flex-1 rounded-lg shadow-sm bg-card text-card-foreground placeholder:text-muted-foreground"
               autoComplete="off"
               disabled={isLoading}
+              suppressHydrationWarning={true}
             />
             <Button
                 type="submit"
                 size="icon"
                 disabled={isLoading || !inputValue.trim()}
-                className="rounded-lg shadow-sm h-10 w-10 active:scale-95 transform transition-transform duration-100 ease-in-out"
+                className="rounded-lg shadow-sm h-10 w-10 active:scale-95 transform transition-transform duration-100 ease-in-out bg-card text-card-foreground hover:bg-card/90"
             >
               {isLoading ? (
                 <Loader2 className="h-5 w-5 animate-spin" />
@@ -361,8 +375,8 @@ export default function Home() {
 
 function LoadingSkeleton() {
   return (
-    <div className="flex h-screen flex-col items-center justify-center p-2 sm:p-4 bg-gradient-to-br from-background to-muted animate-in fade-in duration-300">
-       <Card className="w-full max-w-2xl shadow-xl rounded-xl flex flex-col overflow-hidden h-full">
+    <div className="flex h-screen flex-col items-center justify-center p-2 sm:p-4 bg-gradient-to-br from-secondary via-background to-muted animate-in fade-in duration-300">
+       <Card className="w-full max-w-2xl shadow-xl rounded-xl flex flex-col overflow-hidden h-full bg-card">
          <CardHeader className="flex flex-row items-center space-x-4 p-4 border-b bg-primary text-primary-foreground">
              <Skeleton className="h-12 w-12 rounded-full bg-primary-foreground/30" />
              <div className="flex flex-col space-y-1.5">
@@ -370,33 +384,32 @@ function LoadingSkeleton() {
                  <Skeleton className="h-4 w-56 rounded-md bg-primary-foreground/30" />
              </div>
          </CardHeader>
-         <CardContent className="p-0 flex-1 overflow-hidden">
+         <CardContent className="p-0 flex-1 overflow-hidden bg-card">
            <ScrollArea className="h-full w-full">
             <div className="p-4 space-y-4">
                <div className="flex items-end gap-3 justify-start">
-                 <Skeleton className="h-20 w-3/4 rounded-lg bg-muted-foreground/20" />
+                 <Skeleton className="h-20 w-3/4 rounded-lg bg-muted/20" />
                </div>
                <div className="flex items-end gap-3 justify-end">
                  <Skeleton className="h-12 w-1/2 rounded-lg bg-primary/20" />
                </div>
                 <div className="flex items-end gap-3 justify-start">
-                 <Skeleton className="h-16 w-2/3 rounded-lg bg-muted-foreground/20" />
+                 <Skeleton className="h-16 w-2/3 rounded-lg bg-muted/20" />
                </div>
              </div>
            </ScrollArea>
          </CardContent>
-         <CardFooter className="p-4 flex flex-col items-start gap-4 border-t bg-background/50">
+         <CardFooter className="p-4 flex flex-col items-start gap-4 border-t bg-primary">
             <div className="w-full space-y-2">
-              <Skeleton className="h-5 w-1/3 rounded-md bg-muted-foreground/20" />
-              <Skeleton className="h-10 w-full rounded-lg bg-muted-foreground/20" />
+              <Skeleton className="h-5 w-1/3 rounded-md bg-primary-foreground/30" />
+              <Skeleton className="h-10 w-full rounded-lg bg-primary-foreground/30" />
             </div>
             <div className="flex w-full items-center gap-3">
-              <Skeleton className="h-10 flex-1 rounded-lg bg-muted-foreground/20" />
-              <Skeleton className="h-10 w-10 rounded-lg bg-muted-foreground/20" />
+              <Skeleton className="h-10 flex-1 rounded-lg bg-primary-foreground/30" />
+              <Skeleton className="h-10 w-10 rounded-lg bg-primary-foreground/30" />
             </div>
          </CardFooter>
        </Card>
    </div>
   );
 }
-
