@@ -251,7 +251,7 @@ function ChatInterface() {
           </Avatar>
           <div className="flex flex-col">
             <CardTitle className="text-xl font-semibold text-primary-foreground">
-              BKBNC Connect
+              BKBNC Connect - Simplifying Your College Journey
             </CardTitle>
             <p className="text-sm text-primary-foreground/90">
               B. K. Birla Night College Kalyan
@@ -326,7 +326,7 @@ function ChatInterface() {
               placeholder="Type your question here..."
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              className="flex-1 rounded-lg shadow-sm text-base"
+              className="flex-1 rounded-lg shadow-sm"
               autoComplete="off"
               disabled={isLoading}
             />
