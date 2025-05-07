@@ -288,7 +288,7 @@ function ChatInterface() {
                     className={`rounded-lg p-3 max-w-[80%] text-sm shadow-md break-words whitespace-pre-wrap ${
                       message.sender === 'user'
                         ? 'bg-primary text-primary-foreground'
-                        : 'bg-muted text-muted-foreground border'
+                        : 'bg-secondary text-secondary-foreground border'
                     }`}
                   >
                     {renderTextWithLinks(message.text)}
