@@ -51,9 +51,7 @@ const predefinedQuestions = [
       'Fee Payment:\n' +
       'After document verification and counseling, students can proceed with the payment of fees either online or offline at the college office.\n\n' +
       'Confirmation of Admission:\n' +
-      'On successful fee payment and verification, admission is confirmed, and students receive their ID card and timetable.\n\n' +
-      'Support Services:\n' +
-      'For any assistance, students can contact the Admission Help Desk or use our college chatbot for instant responses to queries regarding courses, fees, scholarships, and more.',
+      'On successful fee payment and verification, admission is confirmed, and students receive their ID card and timetable.\n\n'
   },
   {
     value: 'document-required',
