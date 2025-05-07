@@ -99,30 +99,27 @@ const renderTextWithLinks = (text: string) => {
   return parts.map((part, index) => {
     if (part && part.match(urlRegex)) {
       let href = part;
-      // Ensure the URL has a protocol for the href attribute
       if (!href.startsWith('http://') && !href.startsWith('https://') && !href.startsWith('ftp://') && !href.startsWith('file://')) {
-        // Defaulting to https if no protocol is present and it looks like a web URL
          if(href.startsWith('www.')) {
             href = 'https://' + href;
-        } else if(href.includes('.')) { // Basic check for domain-like structure
+        } else if(href.includes('.')) { 
             href = 'https://' + href;
         }
       }
       return (
         <a
-          key={`${part}-${index}`} // Using part and index for a more unique key
+          key={`${part}-${index}`} 
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-primary underline hover:text-primary/80"
+          className="text-primary underline hover:text-primary/80 transition-colors"
         >
           {part}
         </a>
       );
     }
-    // Return text part, ensuring it's a valid React child (string or ReactElement)
     return part || '';
-  }).filter(part => part !== ''); // Filter out any empty strings that might result from split
+  }).filter(part => part !== ''); 
 };
 
 
@@ -137,18 +134,16 @@ function ChatInterface() {
   ]);
   const [isLoading, setIsLoading] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
-  const viewportRef = useRef<HTMLDivElement>(null); // Ref for the viewport
+  const viewportRef = useRef<HTMLDivElement>(null); 
 
 
   const scrollToBottom = () => {
-    // Use the viewport ref directly if available
     const viewport = viewportRef.current;
     if (viewport) {
-      // Use requestAnimationFrame to ensure scrolling happens after layout updates
       requestAnimationFrame(() => {
         viewport.scrollTop = viewport.scrollHeight;
       });
-    } else if (scrollAreaRef.current) { // Fallback to querying if viewport ref isn't set yet
+    } else if (scrollAreaRef.current) { 
         const scrollableViewport = scrollAreaRef.current.querySelector('div[data-radix-scroll-area-viewport]');
         if (scrollableViewport) {
              requestAnimationFrame(() => {
@@ -159,16 +154,14 @@ function ChatInterface() {
   };
 
   useEffect(() => {
-    // Attach the ref to the viewport element after the component mounts
     if (scrollAreaRef.current) {
       const viewportElement = scrollAreaRef.current.querySelector('div[data-radix-scroll-area-viewport]');
       if (viewportElement) {
-         // @ts-ignore - Assigning ref dynamically
         viewportRef.current = viewportElement as HTMLDivElement;
       }
     }
     scrollToBottom();
-  }, [messages]); // Rerun effect when messages change
+  }, [messages]); 
 
 
   const handlePredefinedQuestionSelect = (value: string) => {
@@ -177,7 +170,6 @@ function ChatInterface() {
     );
     if (selectedQuestion) {
         if (selectedQuestion.response) {
-             // If there's a canned response, use it directly
             const userMessageId = crypto.randomUUID();
             const aiMessageId = crypto.randomUUID();
             setMessages((prevMessages) => [
@@ -187,7 +179,6 @@ function ChatInterface() {
             ]);
             requestAnimationFrame(scrollToBottom);
         } else {
-            // Otherwise, send to AI
             handleSubmit(selectedQuestion.label);
         }
     }
@@ -207,14 +198,12 @@ function ChatInterface() {
     if (!userQuestion.trim()) return;
 
     const userMessageId = crypto.randomUUID();
-    // Immediately add user message
     setMessages((prevMessages) => [
         ...prevMessages,
         { id: userMessageId, sender: 'user', text: userQuestion },
     ]);
     setInputValue('');
     setIsLoading(true);
-    // Ensure scroll happens *after* state update is rendered
     requestAnimationFrame(scrollToBottom);
 
 
@@ -237,7 +226,6 @@ function ChatInterface() {
           ]);
         } finally {
           setIsLoading(false);
-           // Ensure scroll happens *after* AI response is rendered and loading state is false
            requestAnimationFrame(scrollToBottom);
         }
     });
@@ -246,7 +234,7 @@ function ChatInterface() {
 
   return (
     <div className="flex h-screen flex-col items-center justify-center p-2 sm:p-4 bg-gradient-to-br from-background to-muted">
-      <Card className="w-full max-w-2xl shadow-xl rounded-xl flex flex-col overflow-hidden h-full max-h-[90vh] sm:max-h-[85vh]">
+      <Card className="w-full max-w-2xl shadow-xl rounded-xl flex flex-col overflow-hidden h-full max-h-[90vh] sm:max-h-[85vh] animate-in fade-in zoom-in-95 duration-300 ease-out">
         <CardHeader className="flex flex-row items-center space-x-4 p-4 border-b bg-primary text-primary-foreground">
           <Avatar className="h-12 w-12">
             <AvatarImage
@@ -271,15 +259,15 @@ function ChatInterface() {
               {messages.map((message) => (
                 <div
                   key={message.id}
-                  className={`flex items-end gap-3 ${ // Use items-end for bottom alignment
+                  className={`flex items-end gap-3 ${ 
                     message.sender === 'user' ? 'justify-end' : 'justify-start' 
-                  }`}
+                  } animate-in fade-in-90 slide-in-from-bottom-4 duration-300 ease-out`}
                 >
                   <div
                     className={`rounded-lg p-3 max-w-[80%] text-sm shadow-md break-words whitespace-pre-wrap ${ 
                       message.sender === 'user'
-                        ? 'bg-primary text-primary-foreground' // self-end removed, handled by parent
-                        : 'bg-card text-card-foreground border' // self-start removed, handled by parent
+                        ? 'bg-primary text-primary-foreground' 
+                        : 'bg-card text-card-foreground border' 
                     }`}
                   >
                     {renderTextWithLinks(message.text)}
@@ -287,7 +275,7 @@ function ChatInterface() {
                 </div>
               ))}
                {isLoading && (
-                 <div className="flex items-end gap-3 justify-start">
+                 <div className="flex items-end gap-3 justify-start animate-in fade-in duration-300">
                    <div className="rounded-lg p-3 bg-card text-card-foreground border shadow-md flex items-center space-x-2">
                      <Loader2 className="h-5 w-5 animate-spin text-primary" />
                      <span className="text-sm">Thinking...</span>
@@ -333,7 +321,12 @@ function ChatInterface() {
               autoComplete="off"
               disabled={isLoading}
             />
-            <Button type="submit" size="icon" disabled={isLoading || !inputValue.trim()} className="rounded-lg shadow-sm h-10 w-10">
+            <Button 
+                type="submit" 
+                size="icon" 
+                disabled={isLoading || !inputValue.trim()} 
+                className="rounded-lg shadow-sm h-10 w-10 active:scale-95 transform transition-transform duration-100 ease-in-out"
+            >
               {isLoading ? (
                 <Loader2 className="h-5 w-5 animate-spin" />
               ) : (
@@ -359,7 +352,7 @@ export default function Home() {
 
 function LoadingSkeleton() {
   return (
-    <div className="flex h-screen flex-col items-center justify-center p-2 sm:p-4 bg-gradient-to-br from-background to-muted">
+    <div className="flex h-screen flex-col items-center justify-center p-2 sm:p-4 bg-gradient-to-br from-background to-muted animate-in fade-in duration-300">
        <Card className="w-full max-w-2xl shadow-xl rounded-xl flex flex-col overflow-hidden h-full max-h-[90vh] sm:max-h-[85vh]">
          <CardHeader className="flex flex-row items-center space-x-4 p-4 border-b bg-primary text-primary-foreground">
              <Skeleton className="h-12 w-12 rounded-full bg-primary-foreground/30" />
