@@ -108,7 +108,7 @@ const renderTextWithLinks = (text: string) => {
       }
       return (
         <a
-          key={`${part}-${index}`} 
+          key={`${part}-${index}`}
           href={href}
           target="_blank"
           rel="noopener noreferrer"
@@ -119,22 +119,27 @@ const renderTextWithLinks = (text: string) => {
       );
     }
     return part || '';
-  }).filter(part => part !== ''); 
+  }).filter(part => part !== '');
 };
 
 
 function ChatInterface() {
   const [inputValue, setInputValue] = useState('');
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: crypto.randomUUID(),
-      sender: 'ai',
-      text: 'Welcome to BKBNC Connect! How can I help you today? Ask me anything about B. K. Birla Night College Kalyan, or select a predefined question.',
-    },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
-  const viewportRef = useRef<HTMLDivElement>(null); 
+  const viewportRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Ensure this runs only on the client
+    setMessages([
+      {
+        id: crypto.randomUUID(),
+        sender: 'ai',
+        text: 'Welcome to BKBNC Connect! How can I help you today? Ask me anything about B. K. Birla Night College Kalyan, or select a predefined question.',
+      },
+    ]);
+  }, []);
 
 
   const scrollToBottom = () => {
@@ -143,7 +148,7 @@ function ChatInterface() {
       requestAnimationFrame(() => {
         viewport.scrollTop = viewport.scrollHeight;
       });
-    } else if (scrollAreaRef.current) { 
+    } else if (scrollAreaRef.current) {
         const scrollableViewport = scrollAreaRef.current.querySelector('div[data-radix-scroll-area-viewport]');
         if (scrollableViewport) {
              requestAnimationFrame(() => {
@@ -161,7 +166,7 @@ function ChatInterface() {
       }
     }
     scrollToBottom();
-  }, [messages]); 
+  }, [messages]);
 
 
   const handlePredefinedQuestionSelect = (value: string) => {
@@ -254,20 +259,20 @@ function ChatInterface() {
           </div>
         </CardHeader>
         <CardContent className="p-0 flex-1 overflow-hidden">
-          <ScrollArea className="h-full w-full" ref={scrollAreaRef}> 
+          <ScrollArea className="h-full w-full" ref={scrollAreaRef}>
             <div className="p-4 space-y-4">
               {messages.map((message) => (
                 <div
                   key={message.id}
-                  className={`flex items-end gap-3 ${ 
-                    message.sender === 'user' ? 'justify-end' : 'justify-start' 
+                  className={`flex items-end gap-3 ${
+                    message.sender === 'user' ? 'justify-end' : 'justify-start'
                   } animate-in fade-in-90 slide-in-from-bottom-4 duration-300 ease-out`}
                 >
                   <div
-                    className={`rounded-lg p-3 max-w-[80%] text-sm shadow-md break-words whitespace-pre-wrap ${ 
+                    className={`rounded-lg p-3 max-w-[80%] text-sm shadow-md break-words whitespace-pre-wrap ${
                       message.sender === 'user'
-                        ? 'bg-primary text-primary-foreground' 
-                        : 'bg-card text-card-foreground border' 
+                        ? 'bg-primary text-primary-foreground'
+                        : 'bg-card text-card-foreground border'
                     }`}
                   >
                     {renderTextWithLinks(message.text)}
@@ -291,8 +296,12 @@ function ChatInterface() {
               Or select a question:
             </Label>
              <Suspense fallback={<Skeleton className="h-10 w-full rounded-lg" />}>
-                 <Select onValueChange={handlePredefinedQuestionSelect} disabled={isLoading}>
-                     <SelectTrigger id="predefined-questions" className="w-full rounded-lg shadow-sm">
+                 <Select onValueChange={handlePredefinedQuestionSelect} disabled={isLoading} >
+                     <SelectTrigger
+                        id="predefined-questions"
+                        className="w-full rounded-lg shadow-sm"
+                        suppressHydrationWarning={true}
+                     >
                         <SelectValue placeholder="Select a predefined question..." />
                      </SelectTrigger>
                      <SelectContent className="rounded-lg shadow-lg">
@@ -321,10 +330,10 @@ function ChatInterface() {
               autoComplete="off"
               disabled={isLoading}
             />
-            <Button 
-                type="submit" 
-                size="icon" 
-                disabled={isLoading || !inputValue.trim()} 
+            <Button
+                type="submit"
+                size="icon"
+                disabled={isLoading || !inputValue.trim()}
                 className="rounded-lg shadow-sm h-10 w-10 active:scale-95 transform transition-transform duration-100 ease-in-out"
             >
               {isLoading ? (
@@ -362,7 +371,7 @@ function LoadingSkeleton() {
              </div>
          </CardHeader>
          <CardContent className="p-0 flex-1 overflow-hidden">
-           <ScrollArea className="h-full w-full"> 
+           <ScrollArea className="h-full w-full">
             <div className="p-4 space-y-4">
                <div className="flex items-end gap-3 justify-start">
                  <Skeleton className="h-20 w-3/4 rounded-lg bg-muted-foreground/20" />
