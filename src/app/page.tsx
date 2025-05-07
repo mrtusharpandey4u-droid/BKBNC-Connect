@@ -234,7 +234,7 @@ function ChatInterface() {
 
   return (
     <div className="flex h-screen flex-col items-center justify-center p-2 sm:p-4 bg-gradient-to-br from-background to-muted">
-      <Card className="w-full max-w-2xl shadow-xl rounded-xl flex flex-col overflow-hidden h-full max-h-[90vh] sm:max-h-[85vh] animate-in fade-in zoom-in-95 duration-300 ease-out">
+      <Card className="w-full max-w-2xl shadow-xl rounded-xl flex flex-col overflow-hidden h-full animate-in fade-in zoom-in-95 duration-300 ease-out">
         <CardHeader className="flex flex-row items-center space-x-4 p-4 border-b bg-primary text-primary-foreground">
           <Avatar className="h-12 w-12">
             <AvatarImage
@@ -353,7 +353,7 @@ export default function Home() {
 function LoadingSkeleton() {
   return (
     <div className="flex h-screen flex-col items-center justify-center p-2 sm:p-4 bg-gradient-to-br from-background to-muted animate-in fade-in duration-300">
-       <Card className="w-full max-w-2xl shadow-xl rounded-xl flex flex-col overflow-hidden h-full max-h-[90vh] sm:max-h-[85vh]">
+       <Card className="w-full max-w-2xl shadow-xl rounded-xl flex flex-col overflow-hidden h-full">
          <CardHeader className="flex flex-row items-center space-x-4 p-4 border-b bg-primary text-primary-foreground">
              <Skeleton className="h-12 w-12 rounded-full bg-primary-foreground/30" />
              <div className="flex flex-col space-y-1.5">
