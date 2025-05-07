@@ -41,22 +41,13 @@ interface Message {
 const predefinedQuestions = [
   {
     value: 'admission-requirements',
-    label: 'What are the admission requirements?',
+    label: 'What is the admission process ?',
     icon: GraduationCap,
     response:
       'Admission Process\n' +
       'The admission process at our college is simple, transparent, and student-focused. Admissions are open to students from all backgrounds who meet the eligibility criteria as per university and government norms.\n\n' +
       'Online Registration:\n' +
       'Students must first register online through the college or university admission portal. Basic personal and academic details need to be filled out accurately.\n\n' +
-      'Document Submission:\n' +
-      'After registration, students must upload scanned copies of required documents such as:\n\n' +
-      '- SSC and HSC mark sheets\n' +
-      '- School/College Leaving Certificate\n' +
-      '- Caste certificate (if applicable)\n' +
-      '- Aadhar card and passport-size photograph\n' +
-      '- Gap certificate (if required)\n\n' +
-      'Merit List & Counseling:\n' +
-      'Admissions are based on merit. Once the merit list is announced, shortlisted students are invited for counseling sessions where they can select their preferred course and complete the admission process.\n\n' +
       'Fee Payment:\n' +
       'After document verification and counseling, students can proceed with the payment of fees either online or offline at the college office.\n\n' +
       'Confirmation of Admission:\n' +
@@ -65,10 +56,19 @@ const predefinedQuestions = [
       'For any assistance, students can contact the Admission Help Desk or use our college chatbot for instant responses to queries regarding courses, fees, scholarships, and more.',
   },
   {
-    value: 'student-life',
-    label: 'Tell me about student life and clubs.',
+    value: 'document-required',
+    label: 'Documents Requried for admission Processes.',
     icon: Users,
-    response: "Life at our college is vibrant, enriching, and thoughtfully designed to support every student's growth, especially working students who benefit from convenient class timings. With a faculty that's not just qualified but deeply committed, students receive quality education in a secure, inclusive environment. The campus buzzes with energy—from well-equipped science labs that spark innovation, to active participation in state and national-level platforms like Aavishkar, Ideathon (Mumbai), RT-MSSU Ideation, and SBI Youth Ideation. Beyond academics, students engage in a dynamic mix of co-curricular and extracurricular activities including Sports, NCC, NSS, and cultural fests, shaping holistic development. The college also offers scholarships through management, easing financial burdens for many. A strong Training and Placement Cell prepares students for the real world, while the Mpower Cell provides personal counseling to ensure mental well-being. Altogether, student life here is a balanced blend of learning, leadership, and lifelong memories."
+    response:
+      'Document Submission:\n' +
+      'After registration, students must upload scanned copies of required documents such as:\n\n' +
+      '- SSC and HSC mark sheets\n' +
+      '- School/College Leaving Certificate\n' +
+      '- Caste certificate (if applicable)\n' +
+      '- Aadhar card and passport-size photograph\n' +
+      '- Gap certificate (if required)\n\n' +
+      'Merit List & Counseling:\n' +
+      'Admissions are based on merit. Once the merit list is announced, shortlisted students are invited for counseling sessions where they can select their preferred course and complete the admission process.\n\n'
   },
   {
     value: 'college-profile',
@@ -87,6 +87,12 @@ const predefinedQuestions = [
     label: 'Programme Offered by the College?',
     icon: BookOpen,
     response: "1. B.A.\n2. B.Sc.\n3. B.Com.\n4. B.Com. (Management Studies)\n5. B.Com. (Accounting & Finance)\n6. B.Com. (Financial Markets)\n7. B.Sc. (Computer Science)"
+  },
+  {
+    value: 'student-life',
+    label: 'Tell me about student life and clubs.',
+    icon: Users,
+    response: "Life at our college is vibrant, enriching, and thoughtfully designed to support every student's growth, especially working students who benefit from convenient class timings. With a faculty that's not just qualified but deeply committed, students receive quality education in a secure, inclusive environment. The campus buzzes with energy—from well-equipped science labs that spark innovation, to active participation in state and national-level platforms like Aavishkar, Ideathon (Mumbai), RT-MSSU Ideation, and SBI Youth Ideation. Beyond academics, students engage in a dynamic mix of co-curricular and extracurricular activities including Sports, NCC, NSS, and cultural fests, shaping holistic development. The college also offers scholarships through management, easing financial burdens for many. A strong Training and Placement Cell prepares students for the real world, while the Mpower Cell provides personal counseling to ensure mental well-being. Altogether, student life here is a balanced blend of learning, leadership, and lifelong memories."
   },
 ];
 
