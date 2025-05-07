@@ -18,9 +18,9 @@ body {
     --primary-foreground: 0 0% 98%; /* Off-White */
     --secondary: 220 15% 90%; /* Light Mid Grey */
     --secondary-foreground: 225 30% 25%; /* Darker Cool Blue */
-    --muted: 220 15% 94%; /* Very Light Grey */
+    --muted: 0 0% 100%; /* White */
     --muted-foreground: 220 10% 45%; /* Mid Cool Grey */
-    --accent: 220 15% 94%; /* Very Light Grey (same as muted) */
+    --accent: 220 15% 94%; /* Very Light Grey */
     --accent-foreground: 225 50% 40%; /* Deeper Navy Blue */
     --destructive: 0 75% 55%; /* Brighter Red */
     --destructive-foreground: 0 0% 98%; /* Off-White */
