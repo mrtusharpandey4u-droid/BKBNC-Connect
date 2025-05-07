@@ -1,19 +1,12 @@
 import type {Metadata} from 'next';
- // import {Geist, Geist_Mono} from 'next/font/google'; // Removed font imports
- import './globals.css';
- import { Toaster } from "@/components/ui/toaster"; // Import Toaster
+import { Inter } from 'next/font/google'; // Import Inter font
+import './globals.css';
+import { Toaster } from "@/components/ui/toaster"; // Import Toaster
 
- /* // Removed font definitions
- const geistSans = Geist({
-   variable: '--font-geist-sans',
-   subsets: ['latin'],
- });
-
- const geistMono = Geist_Mono({
-   variable: '--font-geist-mono',
-   subsets: ['latin'],
- });
- */
+const inter = Inter({ // Initialize Inter font
+  subsets: ['latin'],
+  variable: '--font-inter', // Define CSS variable for Inter font
+});
 
  export const metadata: Metadata = {
    title: 'BKBNC Connect - Simplifying College Journey',
@@ -27,8 +20,7 @@ import type {Metadata} from 'next';
  }>) {
    return (
      <html lang="en">
-       {/* Removed font variables from body className */}
-       <body className={`antialiased`}>
+       <body className={`${inter.variable} font-sans antialiased`}> {/* Apply Inter font */}
          {children}
          <Toaster /> {/* Add Toaster here */}
        </body>

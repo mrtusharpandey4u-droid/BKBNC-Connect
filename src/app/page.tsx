@@ -245,107 +245,105 @@ function ChatInterface() {
 
 
   return (
-    <div className="flex h-screen flex-col p-4 bg-background">
-      <div className="flex flex-1 justify-center items-stretch py-4">
-          <Card className="w-full max-w-2xl shadow-lg rounded-lg flex flex-col overflow-hidden">
-            <CardHeader className="flex flex-row items-center space-x-4 p-4 border-b bg-primary text-primary-foreground">
-              <Avatar className="h-12 w-12">
-                <AvatarImage
-                  src="https://scontent.fbom26-2.fna.fbcdn.net/v/t39.30808-1/309894515_391607699846414_3486837502365611657_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=108&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=S9UMlr9JFv0Q7kNvwFS2V8l&_nc_oc=AdljX0Sr6o7ncCQz1ZSw_7qUqXQz63TCzL2IAV3CF2PJrfKMEfOt0jPdwYEebEs6Drk&_nc_zt=24&_nc_ht=scontent.fbom26-2.fna&_nc_gid=pPCIynDh6wHaLXkyHflzkA&oh=00_AfIwejgoWYIBuRto8PZ0eSu42ZYHAr9oC4cYaSZKOVYI3A&oe=681FA8C8"
-                  alt="BKBNC Logo"
-                  data-ai-hint="college logo"
-                />
-                <AvatarFallback>BNC</AvatarFallback>
-              </Avatar>
-              <div className="flex flex-col">
-                <CardTitle className="text-xl font-semibold text-primary-foreground">
-                  BKBNC Connect
-                </CardTitle>
-                <p className="text-xs text-primary-foreground opacity-90">
-                  B. K. Birla Night College Kalyan
-                </p>
-              </div>
-            </CardHeader>
-            <CardContent className="p-0 flex-1 overflow-hidden">
-              <ScrollArea className="h-full w-full" ref={scrollAreaRef}> 
-                <div className="p-4 space-y-4">
-                  {messages.map((message) => (
-                    <div
-                      key={message.id}
-                      className={`flex items-start gap-3 ${
-                        message.sender === 'user' ? 'justify-end' : 'justify-start' 
-                      }`}
-                    >
-                      <div
-                        className={`rounded-lg p-3 max-w-[75%] text-sm shadow-md break-words whitespace-pre-wrap ${ 
-                          message.sender === 'user'
-                            ? 'bg-primary text-primary-foreground self-end'
-                            : 'bg-card text-card-foreground border self-start'
-                        }`}
-                      >
-                        {renderTextWithLinks(message.text)}
-                      </div>
-                    </div>
-                  ))}
-                   {isLoading && (
-                     <div className="flex items-start gap-3 justify-start">
-                       <div className="rounded-lg p-3 bg-card text-card-foreground border shadow-md flex items-center space-x-2 self-start">
-                         <Loader2 className="h-4 w-4 animate-spin text-primary" />
-                         <span className="text-sm">Thinking...</span>
-                       </div>
-                     </div>
-                   )}
+    <div className="flex h-screen flex-col items-center justify-center p-2 sm:p-4 bg-gradient-to-br from-background to-muted">
+      <Card className="w-full max-w-2xl shadow-xl rounded-xl flex flex-col overflow-hidden h-full max-h-[90vh] sm:max-h-[85vh]">
+        <CardHeader className="flex flex-row items-center space-x-4 p-4 border-b bg-primary text-primary-foreground">
+          <Avatar className="h-12 w-12">
+            <AvatarImage
+              src="https://scontent.fbom26-2.fna.fbcdn.net/v/t39.30808-1/309894515_391607699846414_3486837502365611657_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=108&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=S9UMlr9JFv0Q7kNvwFS2V8l&_nc_oc=AdljX0Sr6o7ncCQz1ZSw_7qUqXQz63TCzL2IAV3CF2PJrfKMEfOt0jPdwYEebEs6Drk&_nc_zt=24&_nc_ht=scontent.fbom26-2.fna&_nc_gid=pPCIynDh6wHaLXkyHflzkA&oh=00_AfIwejgoWYIBuRto8PZ0eSu42ZYHAr9oC4cYaSZKOVYI3A&oe=681FA8C8"
+              alt="BKBNC Logo"
+              data-ai-hint="college logo"
+            />
+            <AvatarFallback>BNC</AvatarFallback>
+          </Avatar>
+          <div className="flex flex-col">
+            <CardTitle className="text-xl font-semibold text-primary-foreground">
+              BKBNC Connect
+            </CardTitle>
+            <p className="text-sm text-primary-foreground/90">
+              B. K. Birla Night College Kalyan
+            </p>
+          </div>
+        </CardHeader>
+        <CardContent className="p-0 flex-1 overflow-hidden">
+          <ScrollArea className="h-full w-full" ref={scrollAreaRef}> 
+            <div className="p-4 space-y-4">
+              {messages.map((message) => (
+                <div
+                  key={message.id}
+                  className={`flex items-end gap-3 ${ // Use items-end for bottom alignment
+                    message.sender === 'user' ? 'justify-end' : 'justify-start' 
+                  }`}
+                >
+                  <div
+                    className={`rounded-lg p-3 max-w-[80%] text-sm shadow-md break-words whitespace-pre-wrap ${ 
+                      message.sender === 'user'
+                        ? 'bg-primary text-primary-foreground' // self-end removed, handled by parent
+                        : 'bg-card text-card-foreground border' // self-start removed, handled by parent
+                    }`}
+                  >
+                    {renderTextWithLinks(message.text)}
+                  </div>
                 </div>
-              </ScrollArea>
-            </CardContent>
-            <CardFooter className="p-4 flex flex-col items-start gap-4 border-t">
-              <div className="w-full">
-                <Label htmlFor="predefined-questions" className="mb-2 block text-sm font-medium text-foreground">
-                  Or select a question:
-                </Label>
-                 <Suspense fallback={<Skeleton className="h-10 w-full rounded-md" />}>
-                     <Select onValueChange={handlePredefinedQuestionSelect} disabled={isLoading}>
-                         <SelectTrigger id="predefined-questions" className="w-full rounded-md shadow-sm">
-                            <SelectValue placeholder="Select a predefined question..." />
-                         </SelectTrigger>
-                         <SelectContent>
-                             {predefinedQuestions.map((q) => (
-                                <SelectItem key={q.value} value={q.value}>
-                                     <div className="flex items-center gap-2">
-                                        <q.icon className="h-4 w-4 text-primary" />
-                                        <span>{q.label}</span>
-                                     </div>
-                                 </SelectItem>
-                             ))}
-                         </SelectContent>
-                     </Select>
-                 </Suspense>
-              </div>
-              <form
-                onSubmit={handleSubmit}
-                className="flex w-full items-center gap-2"
-              >
-                <Input
-                  id="message"
-                  placeholder="Type your question here..."
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  className="flex-1 rounded-md shadow-sm"
-                  autoComplete="off"
-                  disabled={isLoading}
-                />
-                <Button type="submit" size="icon" disabled={isLoading || !inputValue.trim()} className="rounded-md shadow-sm">
-                  {isLoading ? (
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                  ) : (
-                    <Send className="h-4 w-4" />
-                  )}
-                  <span className="sr-only">Send</span>
-                </Button>
-              </form>
-            </CardFooter>
-          </Card>
-      </div>
+              ))}
+               {isLoading && (
+                 <div className="flex items-end gap-3 justify-start">
+                   <div className="rounded-lg p-3 bg-card text-card-foreground border shadow-md flex items-center space-x-2">
+                     <Loader2 className="h-5 w-5 animate-spin text-primary" />
+                     <span className="text-sm">Thinking...</span>
+                   </div>
+                 </div>
+               )}
+            </div>
+          </ScrollArea>
+        </CardContent>
+        <CardFooter className="p-4 flex flex-col items-start gap-4 border-t bg-background/50">
+          <div className="w-full">
+            <Label htmlFor="predefined-questions" className="mb-2 block text-sm font-medium text-foreground/90">
+              Or select a question:
+            </Label>
+             <Suspense fallback={<Skeleton className="h-10 w-full rounded-lg" />}>
+                 <Select onValueChange={handlePredefinedQuestionSelect} disabled={isLoading}>
+                     <SelectTrigger id="predefined-questions" className="w-full rounded-lg shadow-sm">
+                        <SelectValue placeholder="Select a predefined question..." />
+                     </SelectTrigger>
+                     <SelectContent className="rounded-lg shadow-lg">
+                         {predefinedQuestions.map((q) => (
+                            <SelectItem key={q.value} value={q.value} className="cursor-pointer">
+                                 <div className="flex items-center gap-3">
+                                    <q.icon className="h-5 w-5 text-primary" />
+                                    <span>{q.label}</span>
+                                 </div>
+                             </SelectItem>
+                         ))}
+                     </SelectContent>
+                 </Select>
+             </Suspense>
+          </div>
+          <form
+            onSubmit={handleSubmit}
+            className="flex w-full items-center gap-3"
+          >
+            <Input
+              id="message"
+              placeholder="Type your question here..."
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              className="flex-1 rounded-lg shadow-sm text-base"
+              autoComplete="off"
+              disabled={isLoading}
+            />
+            <Button type="submit" size="icon" disabled={isLoading || !inputValue.trim()} className="rounded-lg shadow-sm h-10 w-10">
+              {isLoading ? (
+                <Loader2 className="h-5 w-5 animate-spin" />
+              ) : (
+                <Send className="h-5 w-5" />
+              )}
+              <span className="sr-only">Send</span>
+            </Button>
+          </form>
+        </CardFooter>
+      </Card>
     </div>
   );
 }
@@ -361,44 +359,42 @@ export default function Home() {
 
 function LoadingSkeleton() {
   return (
-    <div className="flex h-screen flex-col p-4 bg-background">
-       <div className="flex flex-1 justify-center items-stretch py-4">
-          <Card className="w-full max-w-2xl shadow-lg rounded-lg flex flex-col overflow-hidden">
-            <CardHeader className="flex flex-row items-center space-x-4 p-4 border-b bg-primary text-primary-foreground">
-                <Skeleton className="h-12 w-12 rounded-full bg-primary-foreground/20" />
-                <div className="flex flex-col space-y-1">
-                    <Skeleton className="h-7 w-48 rounded-md bg-primary-foreground/20" />
-                    <Skeleton className="h-4 w-64 rounded-md bg-primary-foreground/20" />
-                </div>
-            </CardHeader>
-            <CardContent className="p-0 flex-1 overflow-hidden">
-              <ScrollArea className="h-full w-full"> 
-               <div className="p-4 space-y-4">
-                  <div className="flex items-start gap-3 justify-start">
-                    <Skeleton className="h-16 w-3/4 rounded-lg" />
-                  </div>
-                  <div className="flex items-start gap-3 justify-end">
-                    <Skeleton className="h-10 w-1/2 rounded-lg" />
-                  </div>
-                   <div className="flex items-start gap-3 justify-start">
-                    <Skeleton className="h-12 w-2/3 rounded-lg" />
-                  </div>
-                </div>
-              </ScrollArea>
-            </CardContent>
-            <CardFooter className="p-4 flex flex-col items-start gap-4 border-t">
-               <div className="w-full space-y-2">
-                 <Skeleton className="h-4 w-1/4 rounded-md" />
-                 <Skeleton className="h-10 w-full rounded-md" />
+    <div className="flex h-screen flex-col items-center justify-center p-2 sm:p-4 bg-gradient-to-br from-background to-muted">
+       <Card className="w-full max-w-2xl shadow-xl rounded-xl flex flex-col overflow-hidden h-full max-h-[90vh] sm:max-h-[85vh]">
+         <CardHeader className="flex flex-row items-center space-x-4 p-4 border-b bg-primary text-primary-foreground">
+             <Skeleton className="h-12 w-12 rounded-full bg-primary-foreground/30" />
+             <div className="flex flex-col space-y-1.5">
+                 <Skeleton className="h-6 w-40 rounded-md bg-primary-foreground/30" />
+                 <Skeleton className="h-4 w-56 rounded-md bg-primary-foreground/30" />
+             </div>
+         </CardHeader>
+         <CardContent className="p-0 flex-1 overflow-hidden">
+           <ScrollArea className="h-full w-full"> 
+            <div className="p-4 space-y-4">
+               <div className="flex items-end gap-3 justify-start">
+                 <Skeleton className="h-20 w-3/4 rounded-lg bg-muted-foreground/20" />
                </div>
-               <div className="flex w-full items-center gap-2">
-                 <Skeleton className="h-10 flex-1 rounded-md" />
-                 <Skeleton className="h-10 w-10 rounded-md" />
+               <div className="flex items-end gap-3 justify-end">
+                 <Skeleton className="h-12 w-1/2 rounded-lg bg-primary/20" />
                </div>
-            </CardFooter>
-          </Card>
-      </div>
-    </div>
+                <div className="flex items-end gap-3 justify-start">
+                 <Skeleton className="h-16 w-2/3 rounded-lg bg-muted-foreground/20" />
+               </div>
+             </div>
+           </ScrollArea>
+         </CardContent>
+         <CardFooter className="p-4 flex flex-col items-start gap-4 border-t bg-background/50">
+            <div className="w-full space-y-2">
+              <Skeleton className="h-5 w-1/3 rounded-md bg-muted-foreground/20" />
+              <Skeleton className="h-10 w-full rounded-lg bg-muted-foreground/20" />
+            </div>
+            <div className="flex w-full items-center gap-3">
+              <Skeleton className="h-10 flex-1 rounded-lg bg-muted-foreground/20" />
+              <Skeleton className="h-10 w-10 rounded-lg bg-muted-foreground/20" />
+            </div>
+         </CardFooter>
+       </Card>
+   </div>
   );
 }
 
