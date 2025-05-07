@@ -29,6 +29,7 @@ import {
   Info,
   Code2,
   BookOpen,
+  School, // Added School icon for college profile avatar
 } from 'lucide-react';
 import { answerStudentQuestion } from '@/ai/flows/answer-student-question';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -243,24 +244,29 @@ function ChatInterface() {
 
 
   return (
-    // Changed: Use h-screen, flex-col, remove items-center/justify-center
     <div className="flex h-screen flex-col p-4 bg-background">
-       {/* Added: Wrapper div for centering card horizontally and allowing vertical stretch */}
       <div className="flex flex-1 justify-center items-stretch py-4">
-          {/* Changed: Added flex, flex-col, flex-1, overflow-hidden */}
           <Card className="w-full max-w-2xl shadow-lg rounded-lg flex flex-col overflow-hidden">
-            <CardHeader className="text-center pb-4 border-b bg-primary text-primary-foreground"> {/* Added bg-primary and text-primary-foreground */}
-              <CardTitle className="text-2xl font-semibold text-primary-foreground"> {/* Changed text-primary to text-primary-foreground */}
-                BKBNC Connect
-              </CardTitle>
-              <p className="text-sm text-primary-foreground opacity-90"> {/* Changed text-muted-foreground to text-primary-foreground and added opacity for subtlety */}
-                B. K. Birla Night College Kalyan - Simplifying Your College Journey
-              </p>
+            <CardHeader className="flex flex-row items-center space-x-4 p-4 border-b bg-primary text-primary-foreground">
+              <Avatar className="h-12 w-12">
+                <AvatarImage
+                  src="https://scontent.fbom26-2.fna.fbcdn.net/v/t39.30808-1/309894515_391607699846414_3486837502365611657_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=108&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=S9UMlr9JFv0Q7kNvwFS2V8l&_nc_oc=AdljX0Sr6o7ncCQz1ZSw_7qUqXQz63TCzL2IAV3CF2PJrfKMEfOt0jPdwYEebEs6Drk&_nc_zt=24&_nc_ht=scontent.fbom26-2.fna&_nc_gid=pPCIynDh6wHaLXkyHflzkA&oh=00_AfIwejgoWYIBuRto8PZ0eSu42ZYHAr9oC4cYaSZKOVYI3A&oe=681FA8C8"
+                  alt="BKBNC Logo"
+                  data-ai-hint="college logo"
+                />
+                <AvatarFallback>BNC</AvatarFallback>
+              </Avatar>
+              <div className="flex flex-col">
+                <CardTitle className="text-xl font-semibold text-primary-foreground">
+                  BKBNC Connect
+                </CardTitle>
+                <p className="text-xs text-primary-foreground opacity-90">
+                  B. K. Birla Night College Kalyan
+                </p>
+              </div>
             </CardHeader>
-            {/* Changed: Added flex-1, overflow-hidden */}
             <CardContent className="p-0 flex-1 overflow-hidden">
-              {/* Changed: Changed h-[50vh] to h-full */}
-              <ScrollArea className="h-full w-full" ref={scrollAreaRef}> {/* Removed border-t/b (now on header/footer) */}
+              <ScrollArea className="h-full w-full" ref={scrollAreaRef}> 
                 <div className="p-4 space-y-4">
                   {messages.map((message) => (
                     <div
@@ -280,7 +286,7 @@ function ChatInterface() {
                         </Avatar>
                       )}
                       <div
-                        className={`rounded-lg p-3 max-w-[75%] text-sm shadow-md break-words whitespace-pre-wrap ${ // Added break-words and whitespace-pre-wrap
+                        className={`rounded-lg p-3 max-w-[75%] text-sm shadow-md break-words whitespace-pre-wrap ${ 
                           message.sender === 'user'
                             ? 'bg-primary text-primary-foreground'
                             : 'bg-card text-card-foreground border'
@@ -291,7 +297,7 @@ function ChatInterface() {
                       {message.sender === 'user' && (
                         <Avatar className="h-8 w-8">
                           <AvatarImage
-                            src="https://picsum.photos/41/41" // Different from AI avatar
+                            src="https://picsum.photos/41/41" 
                             alt="User Avatar"
                              data-ai-hint="person student"
                           />
@@ -319,7 +325,6 @@ function ChatInterface() {
                 </div>
               </ScrollArea>
             </CardContent>
-            {/* Changed: Added border-t */}
             <CardFooter className="p-4 flex flex-col items-start gap-4 border-t">
               <div className="w-full">
                 <Label htmlFor="predefined-questions" className="mb-2 block text-sm font-medium text-foreground">
@@ -383,27 +388,23 @@ export default function Home() {
 
 function LoadingSkeleton() {
   return (
-    // Changed: Use h-screen, flex-col, remove items-center/justify-center
     <div className="flex h-screen flex-col p-4 bg-background">
-       {/* Added: Wrapper div for centering card horizontally and allowing vertical stretch */}
        <div className="flex flex-1 justify-center items-stretch py-4">
-          {/* Changed: Added flex, flex-col, flex-1, overflow-hidden */}
           <Card className="w-full max-w-2xl shadow-lg rounded-lg flex flex-col overflow-hidden">
-            <CardHeader className="text-center pb-4 border-b bg-primary text-primary-foreground"> {/* Added bg-primary and text-primary-foreground for skeleton consistency */}
-                <Skeleton className="h-8 w-3/4 mx-auto mb-2 rounded-md bg-primary-foreground/20" /> {/* Adjusted skeleton color for visibility on primary bg */}
-                <Skeleton className="h-4 w-1/2 mx-auto rounded-md bg-primary-foreground/20" /> {/* Adjusted skeleton color */}
+            <CardHeader className="flex flex-row items-center space-x-4 p-4 border-b bg-primary text-primary-foreground">
+                <Skeleton className="h-12 w-12 rounded-full bg-primary-foreground/20" />
+                <div className="flex flex-col space-y-1">
+                    <Skeleton className="h-7 w-48 rounded-md bg-primary-foreground/20" />
+                    <Skeleton className="h-4 w-64 rounded-md bg-primary-foreground/20" />
+                </div>
             </CardHeader>
-            {/* Changed: Added flex-1, overflow-hidden */}
             <CardContent className="p-0 flex-1 overflow-hidden">
-              {/* Changed: Changed h-[50vh] to h-full */}
-              <ScrollArea className="h-full w-full"> {/* Removed border-t/b */}
+              <ScrollArea className="h-full w-full"> 
                <div className="p-4 space-y-4">
-                  {/* Skeleton for AI message */}
                   <div className="flex items-start gap-3">
                     <Skeleton className="h-8 w-8 rounded-full" />
                     <Skeleton className="h-16 w-3/4 rounded-lg" />
                   </div>
-                  {/* Skeleton for User message */}
                   <div className="flex items-start gap-3 justify-end">
                     <Skeleton className="h-10 w-1/2 rounded-lg" />
                      <Skeleton className="h-8 w-8 rounded-full" />
@@ -415,7 +416,6 @@ function LoadingSkeleton() {
                 </div>
               </ScrollArea>
             </CardContent>
-             {/* Changed: Added border-t */}
             <CardFooter className="p-4 flex flex-col items-start gap-4 border-t">
                <div className="w-full space-y-2">
                  <Skeleton className="h-4 w-1/4 rounded-md" />
@@ -431,14 +431,3 @@ function LoadingSkeleton() {
     </div>
   );
 }
-
-
-    
-
-    
-
-
-
-
-
-
