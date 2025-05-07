@@ -29,7 +29,6 @@ import {
   Info,
   Code2,
   BookOpen,
-  School, // Added School icon for college profile avatar
 } from 'lucide-react';
 import { answerStudentQuestion } from '@/ai/flows/answer-student-question';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -76,13 +75,13 @@ const predefinedQuestions = [
     value: 'college-profile',
     label: 'Where can I find the college profile or "About Us" information?',
     icon: Info,
-    response: "About Us: https://bkbirlanightcollegekalyan.com/profile.aspx"
+    response: "You can find detailed information about the college's profile, history, vision, and mission on their official website: https://bkbirlanightcollegekalyan.com/profile.aspx"
   },
   {
     value: 'college-code',
     label: 'What is the College Code?',
     icon: Code2,
-    response: "College Code: 1122",
+    response: "The College Code for B. K. Birla Night College Kalyan is 840.",
   },
   {
     value: 'programme-offered',
@@ -94,7 +93,7 @@ const predefinedQuestions = [
 
 // Helper function to render text with clickable links
 const renderTextWithLinks = (text: string) => {
-  const urlRegex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+  const urlRegex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])|(\bwww\.[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
   const parts = text.split(urlRegex);
 
   return parts.map((part, index) => {
@@ -103,7 +102,9 @@ const renderTextWithLinks = (text: string) => {
       // Ensure the URL has a protocol for the href attribute
       if (!href.startsWith('http://') && !href.startsWith('https://') && !href.startsWith('ftp://') && !href.startsWith('file://')) {
         // Defaulting to https if no protocol is present and it looks like a web URL
-        if(href.includes('.')) { // Basic check for domain-like structure
+         if(href.startsWith('www.')) {
+            href = 'https://' + href;
+        } else if(href.includes('.')) { // Basic check for domain-like structure
             href = 'https://' + href;
         }
       }
@@ -272,51 +273,23 @@ function ChatInterface() {
                     <div
                       key={message.id}
                       className={`flex items-start gap-3 ${
-                        message.sender === 'user' ? 'justify-end' : ''
+                        message.sender === 'user' ? 'justify-end' : 'justify-start' 
                       }`}
                     >
-                      {message.sender === 'ai' && (
-                        <Avatar className="h-8 w-8">
-                          <AvatarImage
-                            src="https://scontent.fbom26-2.fna.fbcdn.net/v/t39.30808-1/309894515_391607699846414_3486837502365611657_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=108&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=S9UMlr9JFv0Q7kNvwFS2V8l&_nc_oc=AdljX0Sr6o7ncCQz1ZSw_7qUqXQz63TCzL2IAV3CF2PJrfKMEfOt0jPdwYEebEs6Drk&_nc_zt=24&_nc_ht=scontent.fbom26-2.fna&_nc_gid=pPCIynDh6wHaLXkyHflzkA&oh=00_AfIwejgoWYIBuRto8PZ0eSu42ZYHAr9oC4cYaSZKOVYI3A&oe=681FA8C8"
-                            alt="AI Avatar"
-                            data-ai-hint="robot assistant"
-                          />
-                          <AvatarFallback>AI</AvatarFallback>
-                        </Avatar>
-                      )}
                       <div
                         className={`rounded-lg p-3 max-w-[75%] text-sm shadow-md break-words whitespace-pre-wrap ${ 
                           message.sender === 'user'
-                            ? 'bg-primary text-primary-foreground'
-                            : 'bg-card text-card-foreground border'
+                            ? 'bg-primary text-primary-foreground self-end'
+                            : 'bg-card text-card-foreground border self-start'
                         }`}
                       >
                         {renderTextWithLinks(message.text)}
                       </div>
-                      {message.sender === 'user' && (
-                        <Avatar className="h-8 w-8">
-                          <AvatarImage
-                            src="https://picsum.photos/41/41" 
-                            alt="User Avatar"
-                             data-ai-hint="person student"
-                          />
-                          <AvatarFallback>U</AvatarFallback>
-                        </Avatar>
-                      )}
                     </div>
                   ))}
                    {isLoading && (
-                     <div className="flex items-start gap-3">
-                       <Avatar className="h-8 w-8">
-                         <AvatarImage
-                           src="https://scontent.fbom26-2.fna.fbcdn.net/v/t39.30808-1/309894515_391607699846414_3486837502365611657_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=108&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=S9UMlr9JFv0Q7kNvwFS2V8l&_nc_oc=AdljX0Sr6o7ncCQz1ZSw_7qUqXQz63TCzL2IAV3CF2PJrfKMEfOt0jPdwYEebEs6Drk&_nc_zt=24&_nc_ht=scontent.fbom26-2.fna&_nc_gid=pPCIynDh6wHaLXkyHflzkA&oh=00_AfIwejgoWYIBuRto8PZ0eSu42ZYHAr9oC4cYaSZKOVYI3A&oe=681FA8C8"
-                           alt="AI Avatar"
-                           data-ai-hint="robot assistant"
-                         />
-                         <AvatarFallback>AI</AvatarFallback>
-                       </Avatar>
-                       <div className="rounded-lg p-3 bg-card text-card-foreground border shadow-md flex items-center space-x-2">
+                     <div className="flex items-start gap-3 justify-start">
+                       <div className="rounded-lg p-3 bg-card text-card-foreground border shadow-md flex items-center space-x-2 self-start">
                          <Loader2 className="h-4 w-4 animate-spin text-primary" />
                          <span className="text-sm">Thinking...</span>
                        </div>
@@ -401,16 +374,13 @@ function LoadingSkeleton() {
             <CardContent className="p-0 flex-1 overflow-hidden">
               <ScrollArea className="h-full w-full"> 
                <div className="p-4 space-y-4">
-                  <div className="flex items-start gap-3">
-                    <Skeleton className="h-8 w-8 rounded-full" />
+                  <div className="flex items-start gap-3 justify-start">
                     <Skeleton className="h-16 w-3/4 rounded-lg" />
                   </div>
                   <div className="flex items-start gap-3 justify-end">
                     <Skeleton className="h-10 w-1/2 rounded-lg" />
-                     <Skeleton className="h-8 w-8 rounded-full" />
                   </div>
-                   <div className="flex items-start gap-3">
-                    <Skeleton className="h-8 w-8 rounded-full" />
+                   <div className="flex items-start gap-3 justify-start">
                     <Skeleton className="h-12 w-2/3 rounded-lg" />
                   </div>
                 </div>
@@ -431,3 +401,4 @@ function LoadingSkeleton() {
     </div>
   );
 }
+
