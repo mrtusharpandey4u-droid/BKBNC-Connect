@@ -11,7 +11,6 @@ import {
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import {
   Select,
   SelectContent,
@@ -102,7 +101,7 @@ const renderTextWithLinks = (text: string) => {
       if (!href.startsWith('http://') && !href.startsWith('https://') && !href.startsWith('ftp://') && !href.startsWith('file://')) {
          if(href.startsWith('www.')) {
             href = 'https://' + href;
-        } else if(href.includes('.')) { 
+        } else if(href.includes('.')) {
             href = 'https://' + href;
         }
       }
@@ -305,9 +304,6 @@ function ChatInterface() {
         </CardContent>
         <CardFooter className="p-4 flex flex-col items-start gap-4 border-t bg-primary">
           <div className="w-full">
-            <Label htmlFor="predefined-questions" className="mb-2 block text-sm font-medium text-primary-foreground/90">
-              Or select a question:
-            </Label>
              <Suspense fallback={<Skeleton className="h-10 w-full rounded-lg bg-primary-foreground/20" />}>
                  <Select onValueChange={handlePredefinedQuestionSelect} disabled={isLoading} >
                      <SelectTrigger
@@ -401,7 +397,6 @@ function LoadingSkeleton() {
          </CardContent>
          <CardFooter className="p-4 flex flex-col items-start gap-4 border-t bg-primary">
             <div className="w-full space-y-2">
-              <Skeleton className="h-5 w-1/3 rounded-md bg-primary-foreground/30" />
               <Skeleton className="h-10 w-full rounded-lg bg-primary-foreground/30" />
             </div>
             <div className="flex w-full items-center gap-3">
