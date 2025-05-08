@@ -30,7 +30,8 @@ import {
   BookOpen,
   Award,
   MapPin,
-  ExternalLink, // Added ExternalLink
+  ExternalLink,
+  Network, // Added Network icon
 } from 'lucide-react';
 import { answerStudentQuestion } from '@/ai/flows/answer-student-question';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -76,7 +77,7 @@ const predefinedQuestions = [
   {
     value: 'admission-link',
     label: 'How I can start my admission processes online?',
-    icon: ExternalLink, // Changed icon here
+    icon: ExternalLink,
     response: "You can start your admission processes online, while refering this link: https://youtu.be/mHH2YKNuihw\nand refer PDF: https://pdf.ac/2SpmH1"
   },
   {
@@ -113,7 +114,7 @@ const predefinedQuestions = [
   {
     value: 'Offical-page',
     label: 'Offical Connects',
-    icon: Users,
+    icon: Network, // Changed icon here
     response:
       '**Offical Website:**\n' +
       'https://bkbirlanightcollegekalyan.com/ \n\n' +
@@ -183,7 +184,7 @@ const renderTextWithLinks = (text: string) => {
         if (href.startsWith('www.')) {
           href = 'https://' + href;
         } else if (href.includes('.')) {
-          href = 'https://' + href;
+          href = 'https://' + href; // Basic assumption for non-prefixed domains
         }
       }
       elements.push(
@@ -192,7 +193,7 @@ const renderTextWithLinks = (text: string) => {
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-foreground underline hover:text-foreground/80 transition-colors"
+          className="text-accent underline hover:text-accent/80 transition-colors" // Changed to accent for URL
         >
           {matchedText}
         </a>
@@ -497,3 +498,4 @@ function LoadingSkeleton() {
     
 
     
+
