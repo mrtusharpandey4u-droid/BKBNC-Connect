@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, type FormEvent, Suspense, startTransition, useEffect, useRef } from 'react';
@@ -31,7 +30,8 @@ import {
   Award,
   MapPin,
   ExternalLink,
-  Network, // Added Network icon
+  Network,
+  Hash, // Added Hash icon
 } from 'lucide-react';
 import { answerStudentQuestion } from '@/ai/flows/answer-student-question';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -77,7 +77,7 @@ const predefinedQuestions = [
   {
     value: 'admission-link',
     label: 'How I can start my admission processes online?',
-    icon: ExternalLink,
+    icon: ExternalLink, // Changed icon here
     response: "You can start your admission processes online, while refering this link: https://youtu.be/mHH2YKNuihw\nand refer PDF: https://pdf.ac/2SpmH1"
   },
   {
@@ -89,7 +89,7 @@ const predefinedQuestions = [
   {
     value: 'college-code',
     label: 'What is the College Code?',
-    icon: Code2,
+    icon: Hash, // Changed icon here from Code2
     response: "The College Code for B. K. Birla Night College Kalyan is 840.",
   },
   {
@@ -158,7 +158,7 @@ const renderTextWithLinks = (text: string) => {
   const regex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])|(\bwww\.[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])|(\*\*[^*]+\*\*)/ig;
 
   if (typeof text !== 'string') {
-    return [text]; // Or handle as an error or empty string
+    return [text]; 
   }
 
   let match;
@@ -184,7 +184,7 @@ const renderTextWithLinks = (text: string) => {
         if (href.startsWith('www.')) {
           href = 'https://' + href;
         } else if (href.includes('.')) {
-          href = 'https://' + href; // Basic assumption for non-prefixed domains
+          href = 'https://' + href; 
         }
       }
       elements.push(
@@ -193,7 +193,7 @@ const renderTextWithLinks = (text: string) => {
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-accent underline hover:text-accent/80 transition-colors" // Changed to accent for URL
+          className="text-accent-foreground underline hover:text-accent-foreground/80 transition-colors"
         >
           {matchedText}
         </a>
@@ -219,7 +219,6 @@ function ChatInterface() {
   const viewportRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Generate a unique ID for the initial AI message
     const initialAiMessageId = typeof crypto !== 'undefined' && crypto.randomUUID 
       ? crypto.randomUUID() 
       : Math.random().toString(36).substring(2);
@@ -241,7 +240,6 @@ function ChatInterface() {
         viewport.scrollTop = viewport.scrollHeight;
       });
     } else if (scrollAreaRef.current) {
-        // Fallback for when viewportRef might not be immediately available
         const scrollableViewport = scrollAreaRef.current.querySelector('div[data-radix-scroll-area-viewport]');
         if (scrollableViewport) {
              requestAnimationFrame(() => {
@@ -252,7 +250,6 @@ function ChatInterface() {
   };
 
   useEffect(() => {
-    // Ensure viewportRef is set up correctly, especially after initial render
     if (scrollAreaRef.current && !viewportRef.current) {
       const viewportElement = scrollAreaRef.current.querySelector('div[data-radix-scroll-area-viewport]');
       if (viewportElement) {
@@ -276,9 +273,8 @@ function ChatInterface() {
                 { id: userMessageId, sender: 'user', text: selectedQuestion.label },
                 { id: aiMessageId, sender: 'ai', text: selectedQuestion.response },
             ]);
-            requestAnimationFrame(scrollToBottom); // Ensure scroll after state update
+            requestAnimationFrame(scrollToBottom); 
         } else {
-            // If no direct response, treat label as a question to AI
             handleSubmit(selectedQuestion.label);
         }
     }
@@ -304,7 +300,7 @@ function ChatInterface() {
     ]);
     setInputValue('');
     setIsLoading(true);
-    requestAnimationFrame(scrollToBottom); // Scroll after adding user message
+    requestAnimationFrame(scrollToBottom); 
 
 
     startTransition(async () => {
@@ -328,7 +324,7 @@ function ChatInterface() {
           ]);
         } finally {
           setIsLoading(false);
-           requestAnimationFrame(scrollToBottom); // Scroll after AI response or error
+           requestAnimationFrame(scrollToBottom); 
         }
     });
   };
@@ -336,7 +332,7 @@ function ChatInterface() {
 
   return (
     <div className="flex h-screen flex-col items-center justify-center p-2 sm:p-4 bg-background text-foreground">
-      <Card className="w-full max-w-2xl shadow-2xl rounded-xl flex flex-col overflow-hidden h-full animate-in fade-in zoom-in-95 duration-500 ease-out bg-secondary/30 backdrop-blur-sm border-primary/20">
+      <Card className="w-full max-w-2xl shadow-2xl rounded-xl flex flex-col overflow-hidden h-full animate-in fade-in zoom-in-95 duration-500 ease-out bg-card backdrop-blur-sm border-primary/20">
         <CardHeader className="flex flex-row items-center space-x-4 p-4 border-b border-primary/20 bg-primary text-primary-foreground">
           <Avatar className="h-12 w-12 border-2 border-primary-foreground/50 rounded-full shadow-md">
             <AvatarImage
@@ -357,7 +353,7 @@ function ChatInterface() {
         </CardHeader>
         <CardContent className="p-0 flex-1 overflow-hidden bg-background/80">
           <ScrollArea className="h-full w-full" ref={scrollAreaRef}>
-            <div className="p-4 space-y-6"> {/* Increased spacing for bubbles */}
+            <div className="p-4 space-y-6">
               {messages.map((message) => (
                 <div
                   key={message.id}
@@ -379,7 +375,7 @@ function ChatInterface() {
               ))}
                {isLoading && (
                  <div className="flex items-end gap-3 justify-start animate-in fade-in duration-300">
-                   <div className="rounded-xl p-3 bg-secondary text-secondary-foreground border border-border shadow-lg flex items-center space-x-2 rounded-bl-none">
+                   <div className="rounded-xl p-3 bg-muted text-muted-foreground border border-border shadow-lg flex items-center space-x-2 rounded-bl-none">
                      <Loader2 className="h-5 w-5 animate-spin text-accent-foreground" /> 
                      <span className="text-sm">Thinking...</span>
                    </div>
@@ -458,44 +454,39 @@ export default function Home() {
 function LoadingSkeleton() {
   return (
     <div className="flex h-screen flex-col items-center justify-center p-2 sm:p-4 bg-background text-foreground animate-in fade-in duration-300">
-       <Card className="w-full max-w-2xl shadow-2xl rounded-xl flex flex-col overflow-hidden h-full bg-secondary/30 backdrop-blur-sm border-primary/20">
+       <Card className="w-full max-w-2xl shadow-2xl rounded-xl flex flex-col overflow-hidden h-full bg-card backdrop-blur-sm border-primary/20">
          <CardHeader className="flex flex-row items-center space-x-4 p-4 border-b border-primary/20 bg-primary text-primary-foreground">
              <Skeleton className="h-12 w-12 rounded-full bg-primary-foreground/30" />
              <div className="flex flex-col space-y-1.5">
-                 <Skeleton className="h-6 w-72 rounded-md bg-primary-foreground/30" /> {/* Adjusted width */}
-                 <Skeleton className="h-4 w-48 rounded-md bg-primary-foreground/30" /> {/* Adjusted width */}
+                 <Skeleton className="h-6 w-72 rounded-md bg-primary-foreground/30" /> 
+                 <Skeleton className="h-4 w-48 rounded-md bg-primary-foreground/30" /> 
              </div>
          </CardHeader>
          <CardContent className="p-0 flex-1 overflow-hidden bg-background/80">
            <ScrollArea className="h-full w-full">
             <div className="p-4 space-y-6">
                <div className="flex items-end gap-3 justify-start">
-                 <Skeleton className="h-20 w-3/4 rounded-xl bg-secondary/50 rounded-bl-none" />
+                 <Skeleton className="h-20 w-3/4 rounded-xl bg-muted rounded-bl-none" />
                </div>
                <div className="flex items-end gap-3 justify-end">
-                 <Skeleton className="h-12 w-1/2 rounded-xl bg-primary/50 rounded-br-none" /> 
+                 <Skeleton className="h-12 w-1/2 rounded-xl bg-primary text-primary-foreground rounded-br-none" /> 
                </div>
                 <div className="flex items-end gap-3 justify-start">
-                 <Skeleton className="h-16 w-2/3 rounded-xl bg-secondary/50 rounded-bl-none" />
+                 <Skeleton className="h-16 w-2/3 rounded-xl bg-muted rounded-bl-none" />
                </div>
              </div>
            </ScrollArea>
          </CardContent>
          <CardFooter className="p-4 flex flex-col items-start gap-4 border-t border-primary/20 bg-primary">
             <div className="w-full">
-              <Skeleton className="h-10 w-full rounded-lg bg-primary-foreground/30" />
+              <Skeleton className="h-10 w-full rounded-lg bg-card" />
             </div>
             <div className="flex w-full items-center gap-3">
-              <Skeleton className="h-10 flex-1 rounded-lg bg-primary-foreground/30" />
-              <Skeleton className="h-10 w-10 rounded-lg bg-primary-foreground/30" />
+              <Skeleton className="h-10 flex-1 rounded-lg bg-card" />
+              <Skeleton className="h-10 w-10 rounded-lg bg-accent" />
             </div>
          </CardFooter>
        </Card>
    </div>
   );
 }
-
-    
-
-    
-
