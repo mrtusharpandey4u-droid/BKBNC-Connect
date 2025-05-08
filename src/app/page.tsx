@@ -100,9 +100,9 @@ const predefinedQuestions = [
       'Offical Website:\n' +
       'https://bkbirlanightcollegekalyan.com/ \n\n' +
       'Instagram:\n' +
-      'https://www.instagram.com/bkbirlanightcollege_kalyan/ \n' +
+      'https://www.instagram.com/bkbirlanightcollege_kalyan/ \n\n' +
       'Facebook:\n' +
-      'https://www.facebook.com/BKBirlaNightCollegeKalyan \n' +
+      'https://www.facebook.com/BKBirlaNightCollegeKalyan \n\n' +
       'YouTube:\n' +
       'https://www.youtube.com/@B.K.BIRLANIGHTCOLLEGEKALYAN \n\n'
   },

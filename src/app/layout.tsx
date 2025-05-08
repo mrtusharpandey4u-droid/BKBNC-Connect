@@ -1,12 +1,12 @@
 import type {Metadata} from 'next';
-import { Inter } from 'next/font/google'; // Import Inter font
+// import { Inter } from 'next/font/google'; // Removed Inter font
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"; // Import Toaster
 
-const inter = Inter({ // Initialize Inter font
-  subsets: ['latin'],
-  variable: '--font-inter', // Define CSS variable for Inter font
-});
+// const inter = Inter({ // Removed Inter font
+//   subsets: ['latin'],
+//   variable: '--font-inter', // Removed Inter font
+// });
 
  export const metadata: Metadata = {
    title: 'BKBNC Connect - Simplifying College Journey',
@@ -20,7 +20,7 @@ const inter = Inter({ // Initialize Inter font
  }>) {
    return (
      <html lang="en">
-       <body className={`${inter.variable} font-sans antialiased`}> {/* Apply Inter font */}
+       <body className={`font-bold antialiased`}> {/* Apply font-bold and remove Inter font variable */}
          {children}
          <Toaster /> {/* Add Toaster here */}
        </body>
