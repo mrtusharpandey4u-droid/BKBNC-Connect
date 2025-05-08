@@ -30,7 +30,10 @@ import {
   MapPin,
   ExternalLink,
   Network,
-  Hash, 
+  Hash,
+  CodeIcon, 
+  LinkIcon, // Added LinkIcon
+  Contact, // Added Contact icon
 } from 'lucide-react';
 import { answerStudentQuestion } from '@/ai/flows/answer-student-question';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -76,7 +79,7 @@ const predefinedQuestions = [
   {
     value: 'admission-link',
     label: 'How I can start my admission processes online?',
-    icon: ExternalLink,
+    icon: LinkIcon,
     response: "You can start your admission processes online, while refering this link: https://youtu.be/mHH2YKNuihw\nand refer PDF: https://pdf.ac/2SpmH1"
   },
   {
@@ -88,7 +91,7 @@ const predefinedQuestions = [
   {
     value: 'college-code',
     label: 'What is the College Code?',
-    icon: Hash, 
+    icon: CodeIcon, 
     response: "The College Code for B. K. Birla Night College Kalyan is 840.",
   },
   {
@@ -113,7 +116,7 @@ const predefinedQuestions = [
   {
     value: 'Offical-page',
     label: 'Offical Connects',
-    icon: Network, 
+    icon: Contact, 
     response:
       '**Offical Website:**\n' +
       'https://bkbirlanightcollegekalyan.com/ \n\n' +
@@ -182,7 +185,7 @@ const renderTextWithLinks = (text: string) => {
       if (!href.startsWith('http://') && !href.startsWith('https://') && !href.startsWith('ftp://') && !href.startsWith('file://')) {
         if (href.startsWith('www.')) {
           href = 'https://' + href;
-        } else if (href.includes('.')) {
+        } else if (href.includes('.')) { // Basic check if it looks like a domain
           href = 'https://' + href; 
         }
       }
@@ -192,7 +195,7 @@ const renderTextWithLinks = (text: string) => {
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-accent-foreground underline hover:text-accent-foreground/80 transition-colors"
+          className="text-accent-foreground underline hover:text-accent-foreground/80 transition-colors" // Keep URLs styled with accent color
         >
           {matchedText}
         </a>
@@ -216,8 +219,10 @@ function ChatInterface() {
   const [isLoading, setIsLoading] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
     const initialAiMessageId = typeof crypto !== 'undefined' && crypto.randomUUID 
       ? crypto.randomUUID() 
       : Math.random().toString(36).substring(2);
@@ -258,6 +263,9 @@ function ChatInterface() {
     scrollToBottom();
   }, [messages]);
 
+  if (!isMounted) {
+    return <LoadingSkeleton />;
+  }
 
   const handlePredefinedQuestionSelect = (value: string) => {
     const selectedQuestion = predefinedQuestions.find(
@@ -489,3 +497,4 @@ function LoadingSkeleton() {
    </div>
   );
 }
+
