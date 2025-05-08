@@ -25,13 +25,12 @@ import {
   Send,
   Loader2,
   Info,
-  Code2,
   BookOpen,
   Award,
   MapPin,
   ExternalLink,
   Network,
-  Hash, // Added Hash icon
+  Hash, 
 } from 'lucide-react';
 import { answerStudentQuestion } from '@/ai/flows/answer-student-question';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -77,7 +76,7 @@ const predefinedQuestions = [
   {
     value: 'admission-link',
     label: 'How I can start my admission processes online?',
-    icon: ExternalLink, // Changed icon here
+    icon: ExternalLink,
     response: "You can start your admission processes online, while refering this link: https://youtu.be/mHH2YKNuihw\nand refer PDF: https://pdf.ac/2SpmH1"
   },
   {
@@ -89,7 +88,7 @@ const predefinedQuestions = [
   {
     value: 'college-code',
     label: 'What is the College Code?',
-    icon: Hash, // Changed icon here from Code2
+    icon: Hash, 
     response: "The College Code for B. K. Birla Night College Kalyan is 840.",
   },
   {
@@ -114,7 +113,7 @@ const predefinedQuestions = [
   {
     value: 'Offical-page',
     label: 'Offical Connects',
-    icon: Network, // Changed icon here
+    icon: Network, 
     response:
       '**Offical Website:**\n' +
       'https://bkbirlanightcollegekalyan.com/ \n\n' +
