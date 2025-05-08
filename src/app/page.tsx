@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, type FormEvent, Suspense, startTransition, useEffect, useRef } from 'react';
@@ -27,7 +28,7 @@ import {
   Info,
   Code2,
   BookOpen,
-  Award, // Changed from LucideCode2
+  Award,
 } from 'lucide-react';
 import { answerStudentQuestion } from '@/ai/flows/answer-student-question';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -116,7 +117,7 @@ const predefinedQuestions = [
   {
     value: 'Achivements',
     label: 'College Achivements',
-    icon: Award, // Changed from LucideCode2 to Award
+    icon: Award,
     response:
     '**SBI COLLEGE YOUTH IDEATION 2025**\n' +
     'Mr. Vansh Shah, Mr. Sachin Verma, and Mr. Vikram Chaudhari from FYBFM, B.K. Birla Night College, Kalyan, secured a spot among the Top 100 teams out of 45,000 at IIT Delhi. Their innovative project focuses on digitalizing ambulance services, insurance, and hospital bed management. This national-level achievement highlights their potential to revolutionize emergency healthcare in India.\n\n' +
@@ -169,7 +170,7 @@ const renderTextWithLinks = (text: string) => {
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-accent underline hover:text-accent/80 transition-colors"
+          className="text-black underline hover:text-black/80 transition-colors"
         >
           {matchedText}
         </a>
@@ -195,23 +196,18 @@ function ChatInterface() {
   const viewportRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (typeof crypto !== 'undefined' && crypto.randomUUID) {
-        setMessages([
-          {
-            id: crypto.randomUUID(),
-            sender: 'ai',
-            text: 'Welcome to BKBNC Connect! How can I help you today? Ask me anything about B. K. Birla Night College Kalyan, or select a predefined question.',
-          },
-        ]);
-    } else {
-        setMessages([
-            {
-              id: Math.random().toString(36).substring(2),
-              sender: 'ai',
-              text: 'Welcome to BKBNC Connect! How can I help you today? Ask me anything about B. K. Birla Night College Kalyan, or select a predefined question.',
-            },
-          ]);
-    }
+    // Generate a unique ID for the initial AI message
+    const initialAiMessageId = typeof crypto !== 'undefined' && crypto.randomUUID 
+      ? crypto.randomUUID() 
+      : Math.random().toString(36).substring(2);
+    
+    setMessages([
+      {
+        id: initialAiMessageId,
+        sender: 'ai',
+        text: 'Welcome to BKBNC Connect! How can I help you today? Ask me anything about B. K. Birla Night College Kalyan, or select a predefined question.',
+      },
+    ]);
   }, []);
 
 
@@ -222,6 +218,7 @@ function ChatInterface() {
         viewport.scrollTop = viewport.scrollHeight;
       });
     } else if (scrollAreaRef.current) {
+        // Fallback for when viewportRef might not be immediately available
         const scrollableViewport = scrollAreaRef.current.querySelector('div[data-radix-scroll-area-viewport]');
         if (scrollableViewport) {
              requestAnimationFrame(() => {
@@ -232,7 +229,8 @@ function ChatInterface() {
   };
 
   useEffect(() => {
-    if (scrollAreaRef.current) {
+    // Ensure viewportRef is set up correctly, especially after initial render
+    if (scrollAreaRef.current && !viewportRef.current) {
       const viewportElement = scrollAreaRef.current.querySelector('div[data-radix-scroll-area-viewport]');
       if (viewportElement) {
         viewportRef.current = viewportElement as HTMLDivElement;
@@ -255,8 +253,9 @@ function ChatInterface() {
                 { id: userMessageId, sender: 'user', text: selectedQuestion.label },
                 { id: aiMessageId, sender: 'ai', text: selectedQuestion.response },
             ]);
-            requestAnimationFrame(scrollToBottom);
+            requestAnimationFrame(scrollToBottom); // Ensure scroll after state update
         } else {
+            // If no direct response, treat label as a question to AI
             handleSubmit(selectedQuestion.label);
         }
     }
@@ -282,7 +281,7 @@ function ChatInterface() {
     ]);
     setInputValue('');
     setIsLoading(true);
-    requestAnimationFrame(scrollToBottom);
+    requestAnimationFrame(scrollToBottom); // Scroll after adding user message
 
 
     startTransition(async () => {
@@ -306,7 +305,7 @@ function ChatInterface() {
           ]);
         } finally {
           setIsLoading(false);
-           requestAnimationFrame(scrollToBottom);
+           requestAnimationFrame(scrollToBottom); // Scroll after AI response or error
         }
     });
   };
@@ -314,15 +313,15 @@ function ChatInterface() {
 
   return (
     <div className="flex h-screen flex-col items-center justify-center p-2 sm:p-4 bg-background text-foreground">
-      <Card className="w-full max-w-2xl shadow-2xl rounded-xl flex flex-col overflow-hidden h-full animate-in fade-in zoom-in-95 duration-500 ease-out bg-secondary">
+      <Card className="w-full max-w-2xl shadow-2xl rounded-xl flex flex-col overflow-hidden h-full animate-in fade-in zoom-in-95 duration-500 ease-out bg-secondary/30 backdrop-blur-sm border border-primary/20">
         <CardHeader className="flex flex-row items-center space-x-4 p-4 border-b border-primary/20 bg-primary text-primary-foreground">
-          <Avatar className="h-12 w-12 border-2 border-primary-foreground/50 rounded-full">
+          <Avatar className="h-12 w-12 border-2 border-primary-foreground/50 rounded-full shadow-md">
             <AvatarImage
               src="https://scontent.fbom26-2.fna.fbcdn.net/v/t39.30808-1/309894515_391607699846414_3486837502365611657_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=108&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=S9UMlr9JFv0Q7kNvwFS2V8l&_nc_oc=AdljX0Sr6o7ncCQz1ZSw_7qUqXQz63TCzL2IAV3CF2PJrfKMEfOt0jPdwYEebEs6Drk&_nc_zt=24&_nc_ht=scontent.fbom26-2.fna&_nc_gid=pPCIynDh6wHaLXkyHflzkA&oh=00_AfIwejgoWYIBuRto8PZ0eSu42ZYHAr9oC4cYaSZKOVYI3A&oe=681FA8C8"
               alt="BKBNC Logo"
               data-ai-hint="college logo"
             />
-            <AvatarFallback className="bg-primary-foreground/20 text-primary">BNC</AvatarFallback>
+            <AvatarFallback className="bg-primary-foreground/20 text-primary font-semibold">BNC</AvatarFallback>
           </Avatar>
           <div className="flex flex-col">
             <CardTitle className="text-xl font-semibold text-primary-foreground">
@@ -333,9 +332,9 @@ function ChatInterface() {
             </p>
           </div>
         </CardHeader>
-        <CardContent className="p-0 flex-1 overflow-hidden bg-background">
+        <CardContent className="p-0 flex-1 overflow-hidden bg-background/80">
           <ScrollArea className="h-full w-full" ref={scrollAreaRef}>
-            <div className="p-4 space-y-6">
+            <div className="p-4 space-y-6"> {/* Increased spacing for bubbles */}
               {messages.map((message) => (
                 <div
                   key={message.id}
@@ -344,11 +343,12 @@ function ChatInterface() {
                   } animate-in fade-in-90 slide-in-from-bottom-6 duration-300 ease-out`}
                 >
                   <div
-                    className={`rounded-xl p-3 max-w-[85%] text-sm shadow-lg break-words whitespace-pre-wrap ${
-                      message.sender === 'user'
-                        ? 'bg-accent text-accent-foreground'
-                        : 'bg-secondary text-secondary-foreground border border-border'
-                    }`}
+                    className={`rounded-xl p-3 max-w-[85%] text-sm shadow-lg break-words whitespace-pre-wrap
+                      ${
+                        message.sender === 'user'
+                          ? 'bg-accent text-accent-foreground rounded-br-none' // User bubble specific style
+                          : 'bg-secondary text-secondary-foreground border border-border rounded-bl-none' // AI bubble specific style
+                      }`}
                   >
                     {renderTextWithLinks(message.text)}
                   </div>
@@ -356,7 +356,7 @@ function ChatInterface() {
               ))}
                {isLoading && (
                  <div className="flex items-end gap-3 justify-start animate-in fade-in duration-300">
-                   <div className="rounded-xl p-3 bg-secondary text-secondary-foreground border border-border shadow-lg flex items-center space-x-2">
+                   <div className="rounded-xl p-3 bg-secondary text-secondary-foreground border border-border shadow-lg flex items-center space-x-2 rounded-bl-none">
                      <Loader2 className="h-5 w-5 animate-spin text-accent" />
                      <span className="text-sm">Thinking...</span>
                    </div>
@@ -435,31 +435,31 @@ export default function Home() {
 function LoadingSkeleton() {
   return (
     <div className="flex h-screen flex-col items-center justify-center p-2 sm:p-4 bg-background text-foreground animate-in fade-in duration-300">
-       <Card className="w-full max-w-2xl shadow-2xl rounded-xl flex flex-col overflow-hidden h-full bg-secondary">
+       <Card className="w-full max-w-2xl shadow-2xl rounded-xl flex flex-col overflow-hidden h-full bg-secondary/30 backdrop-blur-sm border-primary/20">
          <CardHeader className="flex flex-row items-center space-x-4 p-4 border-b border-primary/20 bg-primary text-primary-foreground">
              <Skeleton className="h-12 w-12 rounded-full bg-primary-foreground/30" />
              <div className="flex flex-col space-y-1.5">
-                 <Skeleton className="h-6 w-40 rounded-md bg-primary-foreground/30" />
-                 <Skeleton className="h-4 w-56 rounded-md bg-primary-foreground/30" />
+                 <Skeleton className="h-6 w-72 rounded-md bg-primary-foreground/30" /> {/* Adjusted width */}
+                 <Skeleton className="h-4 w-48 rounded-md bg-primary-foreground/30" /> {/* Adjusted width */}
              </div>
          </CardHeader>
-         <CardContent className="p-0 flex-1 overflow-hidden bg-background">
+         <CardContent className="p-0 flex-1 overflow-hidden bg-background/80">
            <ScrollArea className="h-full w-full">
             <div className="p-4 space-y-6">
                <div className="flex items-end gap-3 justify-start">
-                 <Skeleton className="h-20 w-3/4 rounded-xl bg-muted/20" />
+                 <Skeleton className="h-20 w-3/4 rounded-xl bg-secondary/50 rounded-bl-none" />
                </div>
                <div className="flex items-end gap-3 justify-end">
-                 <Skeleton className="h-12 w-1/2 rounded-xl bg-accent/20" />
+                 <Skeleton className="h-12 w-1/2 rounded-xl bg-accent/50 rounded-br-none" />
                </div>
                 <div className="flex items-end gap-3 justify-start">
-                 <Skeleton className="h-16 w-2/3 rounded-xl bg-muted/20" />
+                 <Skeleton className="h-16 w-2/3 rounded-xl bg-secondary/50 rounded-bl-none" />
                </div>
              </div>
            </ScrollArea>
          </CardContent>
          <CardFooter className="p-4 flex flex-col items-start gap-4 border-t border-primary/20 bg-primary">
-            <div className="w-full space-y-2">
+            <div className="w-full">
               <Skeleton className="h-10 w-full rounded-lg bg-primary-foreground/30" />
             </div>
             <div className="flex w-full items-center gap-3">
@@ -472,3 +472,4 @@ function LoadingSkeleton() {
   );
 }
 
+    
