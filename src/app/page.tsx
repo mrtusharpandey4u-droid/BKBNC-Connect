@@ -85,7 +85,7 @@ const predefinedQuestions = [
     value: 'college-code',
     label: 'What is the College Code?',
     icon: Code2,
-    response: "The College Code for B. K. Birla Night College Kalyan is 1122.",
+    response: "The College Code for B. K. Birla Night College Kalyan is 840.",
   },
   {
     value: 'programme-offered',
@@ -122,7 +122,7 @@ const predefinedQuestions = [
     '**SBI COLLEGE YOUTH IDEATION 2025**\n' +
     'Mr. Vansh Shah, Mr. Sachin Verma, and Mr. Vikram Chaudhari from FYBFM, B.K. Birla Night College, Kalyan, secured a spot among the Top 100 teams out of 45,000 at IIT Delhi. Their innovative project focuses on digitalizing ambulance services, insurance, and hospital bed management. This national-level achievement highlights their potential to revolutionize emergency healthcare in India.\n\n' +
     '**Sports Achivement: South Asian Triathlon Championship**\n' +
-    'Ms. Dolly Devidas Patil of FYBCom, B.K. Birla Night College, Kalyan, has brought immense pride to the institution by winning the Gold Medal at the South Asian Triathlon Championship held in Nepal on 25th and 26th April 2025. Her outstanding performance at this prestigious international event showcases her unwavering dedication, athletic excellence, and commitment to representing both her college and country with honor. This remarkable accomplishment stands as an inspiration to all aspiring athletes and a proud moment for the entire BKBNC family.\n\n',
+    'Ms. Dolly Devidas Patil of FYBCom, B.K. Birla Night College, Kalyan, has brought immense pride to the institution by winning the Gold Medal at the South Asian Triathlon Championship held in Nepal on 25th and 26th April 2025. Her outstanding performance at this prestigious international event showcases her unwavering dedication, athletic excellence, and commitment to representing both her college and country with honor. This remarkable accomplishment stands as an inspiration to all aspiring athletes and a proud moment for the entire BKBNC family.\n\n'
   },
 ];
 
@@ -170,7 +170,7 @@ const renderTextWithLinks = (text: string) => {
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-black underline hover:text-black/80 transition-colors"
+          className="text-foreground underline hover:text-foreground/80 transition-colors" // Changed text-black to text-foreground
         >
           {matchedText}
         </a>
@@ -346,8 +346,8 @@ function ChatInterface() {
                     className={`rounded-xl p-3 max-w-[85%] text-sm shadow-lg break-words whitespace-pre-wrap
                       ${
                         message.sender === 'user'
-                          ? 'bg-accent text-accent-foreground rounded-br-none' // User bubble specific style
-                          : 'bg-secondary text-secondary-foreground border border-border rounded-bl-none' // AI bubble specific style
+                          ? 'bg-primary text-primary-foreground rounded-br-none' // User bubble: Navy Blue BG, White Text
+                          : 'bg-secondary text-secondary-foreground border border-border rounded-bl-none' // AI bubble: Grey BG
                       }`}
                   >
                     {renderTextWithLinks(message.text)}
@@ -357,7 +357,7 @@ function ChatInterface() {
                {isLoading && (
                  <div className="flex items-end gap-3 justify-start animate-in fade-in duration-300">
                    <div className="rounded-xl p-3 bg-secondary text-secondary-foreground border border-border shadow-lg flex items-center space-x-2 rounded-bl-none">
-                     <Loader2 className="h-5 w-5 animate-spin text-accent" />
+                     <Loader2 className="h-5 w-5 animate-spin text-accent-foreground" /> {/* Changed text-accent to text-accent-foreground for better contrast on dark primary footer */}
                      <span className="text-sm">Thinking...</span>
                    </div>
                  </div>
@@ -371,7 +371,7 @@ function ChatInterface() {
                  <Select onValueChange={handlePredefinedQuestionSelect} disabled={isLoading} >
                      <SelectTrigger
                         id="predefined-questions"
-                        className="w-full rounded-lg shadow-md bg-card text-card-foreground focus:ring-accent focus:border-accent"
+                        className="w-full rounded-lg shadow-md bg-card text-card-foreground focus:ring-ring focus:border-ring" /* Updated focus to ring/border */
                         suppressHydrationWarning={true}
                      >
                         <SelectValue placeholder="Select a predefined question..." />
@@ -380,7 +380,7 @@ function ChatInterface() {
                          {predefinedQuestions.map((q) => (
                             <SelectItem key={q.value} value={q.value} className="cursor-pointer hover:bg-accent/10 focus:bg-accent/20">
                                  <div className="flex items-center gap-3">
-                                    <q.icon className="h-5 w-5 text-accent" />
+                                    <q.icon className="h-5 w-5 text-primary" /> {/* Changed text-accent to text-primary */}
                                     <span>{q.label}</span>
                                  </div>
                              </SelectItem>
@@ -398,7 +398,7 @@ function ChatInterface() {
               placeholder="Type your question here..."
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              className="flex-1 rounded-lg shadow-md bg-card text-card-foreground placeholder:text-muted-foreground focus:ring-accent focus:border-accent"
+              className="flex-1 rounded-lg shadow-md bg-card text-card-foreground placeholder:text-muted-foreground focus:ring-ring focus:border-ring" /* Updated focus to ring/border */
               autoComplete="off"
               disabled={isLoading}
               suppressHydrationWarning={true}
@@ -450,7 +450,7 @@ function LoadingSkeleton() {
                  <Skeleton className="h-20 w-3/4 rounded-xl bg-secondary/50 rounded-bl-none" />
                </div>
                <div className="flex items-end gap-3 justify-end">
-                 <Skeleton className="h-12 w-1/2 rounded-xl bg-accent/50 rounded-br-none" />
+                 <Skeleton className="h-12 w-1/2 rounded-xl bg-primary/50 rounded-br-none" /> {/* Changed from accent to primary */}
                </div>
                 <div className="flex items-end gap-3 justify-start">
                  <Skeleton className="h-16 w-2/3 rounded-xl bg-secondary/50 rounded-bl-none" />
