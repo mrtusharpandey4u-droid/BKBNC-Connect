@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, type FormEvent, Suspense, startTransition, useEffect, useRef } from 'react';
@@ -28,6 +27,7 @@ import {
   Info,
   Code2,
   BookOpen,
+  LucideCode2,
 } from 'lucide-react';
 import { answerStudentQuestion } from '@/ai/flows/answer-student-question';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -69,6 +69,12 @@ const predefinedQuestions = [
       'Admissions are based on merit. Once the merit list is announced, shortlisted students are invited for counseling sessions where they can select their preferred course and complete the admission process.\n\n'
   },
   {
+    value: 'admission-link',
+    label: 'How I can start my admission processes online?',
+    icon: Info,
+    response: "You can start your admission processes online, while refering this link:https://youtu.be/mHH2YKNuihw\n and refer PDF: https://pdf.ac/2SpmH1"
+  },
+  {
     value: 'college-profile',
     label: 'Where can I find the college profile or "About Us" information?',
     icon: Info,
@@ -87,10 +93,33 @@ const predefinedQuestions = [
     response: "1. B.A.\n2. B.Sc.\n3. B.Com.\n4. B.Com. (Management Studies)\n5. B.Com. (Accounting & Finance)\n6. B.Com. (Financial Markets)\n7. B.Sc. (Computer Science)"
   },
   {
+    value: 'Offical-page',
+    label: 'Offical Connects',
+    icon: Users,
+    response:
+      'Offical Website:\n' +
+      'https://bkbirlanightcollegekalyan.com/ \n\n' +
+      'Instagram:\n' +
+      'https://www.instagram.com/bkbirlanightcollege_kalyan/ \n' +
+      'Facebook:\n' +
+      'https://www.facebook.com/BKBirlaNightCollegeKalyan \n' +
+      'YouTube:\n' +
+      'https://www.youtube.com/@B.K.BIRLANIGHTCOLLEGEKALYAN \n\n'
+  },
+
+  {
     value: 'student-life',
     label: 'Tell me about student life and clubs.',
     icon: Users,
     response: "Life at our college is vibrant, enriching, and thoughtfully designed to support every student's growth, especially working students who benefit from convenient class timings. With a faculty that's not just qualified but deeply committed, students receive quality education in a secure, inclusive environment. The campus buzzes with energy—from well-equipped science labs that spark innovation, to active participation in state and national-level platforms like Aavishkar, Ideathon (Mumbai), RT-MSSU Ideation, and SBI Youth Ideation. Beyond academics, students engage in a dynamic mix of co-curricular and extracurricular activities including Sports, NCC, NSS, and cultural fests, shaping holistic development. The college also offers scholarships through management, easing financial burdens for many. A strong Training and Placement Cell prepares students for the real world, while the Mpower Cell provides personal counseling to ensure mental well-being. Altogether, student life here is a balanced blend of learning, leadership, and lifelong memories."
+  },
+  {
+    value: 'Achivements',
+    label: 'College Achivements',
+    icon: LucideCode2,
+    response:
+    'SBI COLLEGE YOUTH IDEATION 2025\n' +
+    'Mr. Vansh Shah, Mr. Sachin Verma, and Mr. Vikram Chaudhari from FYBFM, B.K. Birla Night College, Kalyan, secured a spot among the Top 100 teams out of 45,000 at IIT Delhi. Their innovative project focuses on digitalizing ambulance services, insurance, and hospital bed management.This national-level achievement highlights their potential to revolutionize emergency healthcare in India.\n',
   },
 ];
 
@@ -106,6 +135,8 @@ const renderTextWithLinks = (text: string) => {
          if(href.startsWith('www.')) {
             href = 'https://' + href;
         } else if(href.includes('.')) {
+            // Basic check for domain-like structure if not starting with www
+            // This might need refinement for more complex cases
             href = 'https://' + href;
         }
       }
