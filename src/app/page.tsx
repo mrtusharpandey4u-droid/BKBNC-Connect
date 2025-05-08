@@ -120,11 +120,13 @@ const predefinedQuestions = [
     icon: Award,
     response:
     '**SBI COLLEGE YOUTH IDEATION 2025**\n' +
-    'Mr. Vansh Shah, Mr. Sachin Verma, and Mr. Vikram Chaudhari from FYBFM, B.K. Birla Night College, Kalyan, secured a spot among the Top 100 teams out of 45,000 at IIT Delhi. Their innovative project focuses on digitalizing ambulance services, insurance, and hospital bed management.This national-level achievement highlights their potential to revolutionize emergency healthcare in India.\n' +
+    'Mr. Vansh Shah, Mr. Sachin Verma, and Mr. Vikram Chaudhari from FYBFM, B.K. Birla Night College, Kalyan, secured a spot among the Top 100 teams out of 45,000 at IIT Delhi. Their innovative project focuses on digitalizing ambulance services, insurance, and hospital bed management.This national-level achievement highlights their potential to revolutionize emergency healthcare in India.\n\n' +
     'https://www.instagram.com/p/DITyZeTKi8Z/?img_index=1\n\n' +
     '**Sports Achivement: South Asian Triathlon Championship**\n' +
-    'Ms. Dolly Devidas Patil of FYBCom, B.K. Birla Night College, Kalyan, has brought immense pride to the institution by winning the Gold Medal at the South Asian Triathlon Championship held in Nepal on 25th and 26th April 2025. Her outstanding performance at this prestigious international event showcases her unwavering dedication, athletic excellence, and commitment to representing both her college and country with honor. This remarkable accomplishment stands as an inspiration to all aspiring athletes and a proud moment for the entire BKBNC family.\n' +
-    'https://www.instagram.com/p/DI_YVk4hQia/\n\n'
+    'Ms. Dolly Devidas Patil of FYBCom, B.K. Birla Night College, Kalyan, has brought immense pride to the institution by winning the Gold Medal at the South Asian Triathlon Championship held in Nepal on 25th and 26th April 2025. Her outstanding performance at this prestigious international event showcases her unwavering dedication, athletic excellence, and commitment to representing both her college and country with honor. This remarkable accomplishment stands as an inspiration to all aspiring athletes and a proud moment for the entire BKBNC family.\n\n' +
+    'https://www.instagram.com/p/DI_YVk4hQia/\n\n' +
+    '**Secured the second prize at the national level RT MSSU Ideation Competition 2.0**\n' +
+    'Ms. Sakshi Parekh, a Third-Year B.Sc. student at B.K. Birla Night College, Kalyan, secured the second prize at the national-level RT-MSSU Ideation Competition 2.0 for her project “Vishw Aadhar Bio Cement and Fertilizer.” Her idea, focused on converting organic waste into bio-cement and organic fertilizer, was recognized for its innovation, sustainability, and practical utility. Chosen from thousands of entries nationwide, her project earned her a cash prize of ₹2 lakhs and highlighted the college emphasis on research-driven and socially impactful education.\n\n'
   },
 ];
 
@@ -172,7 +174,7 @@ const renderTextWithLinks = (text: string) => {
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-foreground underline hover:text-foreground/80 transition-colors"
+          className="text-accent-foreground underline hover:text-accent-foreground/80 transition-colors"
         >
           {matchedText}
         </a>
