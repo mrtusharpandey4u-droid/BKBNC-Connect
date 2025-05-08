@@ -30,6 +30,7 @@ import {
   BookOpen,
   Award,
   MapPin,
+  ExternalLink, // Added ExternalLink
 } from 'lucide-react';
 import { answerStudentQuestion } from '@/ai/flows/answer-student-question';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -75,7 +76,7 @@ const predefinedQuestions = [
   {
     value: 'admission-link',
     label: 'How I can start my admission processes online?',
-    icon: Info,
+    icon: ExternalLink, // Changed icon here
     response: "You can start your admission processes online, while refering this link: https://youtu.be/mHH2YKNuihw\nand refer PDF: https://pdf.ac/2SpmH1"
   },
   {
@@ -88,7 +89,7 @@ const predefinedQuestions = [
     value: 'college-code',
     label: 'What is the College Code?',
     icon: Code2,
-    response: "The College Code for B. K. Birla Night College Kalyan is 1122.",
+    response: "The College Code for B. K. Birla Night College Kalyan is 840.",
   },
   {
     value: 'programme-offered',
@@ -101,8 +102,8 @@ const predefinedQuestions = [
     label: 'Where B. K. Birla Night College is Located?',
     icon: MapPin,
     response: 
-      'Here is the Google Map location** of B. K. Birla Night College, Kalyan: \n' +
-      '🔗 [B.K. Birla Night College on Google Maps: (https://www.google.com/maps/place/B.K.+Birla+College+of+Arts,+Science+%26+Commerce/@19.243788,73.136428,17z) \n' +
+      'Here is the Google Map location of B. K. Birla Night College, Kalyan: \n' +
+      '🔗B.K. Birla Night College on Google Maps: https://www.google.com/maps/place/B.K.+Birla+College+of+Arts,+Science+%26+Commerce/@19.243788,73.136428,17z \n' +
       '📍 Address on Map:\n' +
       'B.K. Birla College of Arts, Science & Commerce,\n' +
       'Birla College Road, Kalyan West,\n' +
@@ -191,7 +192,7 @@ const renderTextWithLinks = (text: string) => {
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-foreground underline hover:text-foreground/80 transition-colors" // Changed to text-foreground
+          className="text-foreground underline hover:text-foreground/80 transition-colors"
         >
           {matchedText}
         </a>
@@ -367,8 +368,8 @@ function ChatInterface() {
                     className={`rounded-xl p-3 max-w-[85%] text-sm shadow-lg break-words whitespace-pre-wrap
                       ${
                         message.sender === 'user'
-                          ? 'bg-primary text-primary-foreground rounded-br-none' // User bubble: Navy Blue BG, White Text
-                          : 'bg-muted text-muted-foreground border border-border rounded-bl-none' // AI bubble: Grey BG, Darker text
+                          ? 'bg-primary text-primary-foreground rounded-br-none' 
+                          : 'bg-muted text-muted-foreground border border-border rounded-bl-none' 
                       }`}
                   >
                     {renderTextWithLinks(message.text)}
