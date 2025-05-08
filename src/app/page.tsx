@@ -29,9 +29,12 @@ import {
   Code2,
   BookOpen,
   Award,
+  MapPin,
 } from 'lucide-react';
 import { answerStudentQuestion } from '@/ai/flows/answer-student-question';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Label } from '@/components/ui/label';
+
 
 interface Message {
   id: string;
@@ -73,7 +76,7 @@ const predefinedQuestions = [
     value: 'admission-link',
     label: 'How I can start my admission processes online?',
     icon: Info,
-    response: "You can start your admission processes online, while refering this link:https://youtu.be/mHH2YKNuihw\n and refer PDF: https://pdf.ac/2SpmH1"
+    response: "You can start your admission processes online, while refering this link: https://youtu.be/mHH2YKNuihw\nand refer PDF: https://pdf.ac/2SpmH1"
   },
   {
     value: 'college-profile',
@@ -85,7 +88,7 @@ const predefinedQuestions = [
     value: 'college-code',
     label: 'What is the College Code?',
     icon: Code2,
-    response: "The College Code for B. K. Birla Night College Kalyan is 840.",
+    response: "The College Code for B. K. Birla Night College Kalyan is 1122.",
   },
   {
     value: 'programme-offered',
@@ -93,6 +96,19 @@ const predefinedQuestions = [
     icon: BookOpen,
     response: "1. B.A.\n2. B.Sc.\n3. B.Com.\n4. B.Com. (Management Studies)\n5. B.Com. (Accounting & Finance)\n6. B.Com. (Financial Markets)\n7. B.Sc. (Computer Science)"
   },
+  {
+    value: 'College-location',
+    label: 'Where B. K. Birla Night College is Located?',
+    icon: MapPin,
+    response: 
+      'Here is the Google Map location** of B. K. Birla Night College, Kalyan: \n' +
+      '🔗 [B.K. Birla Night College on Google Maps: (https://www.google.com/maps/place/B.K.+Birla+College+of+Arts,+Science+%26+Commerce/@19.243788,73.136428,17z) \n' +
+      '📍 Address on Map:\n' +
+      'B.K. Birla College of Arts, Science & Commerce,\n' +
+      'Birla College Road, Kalyan West,\n' +
+      'Maharashtra 421301, India \n\n'
+  },
+
   {
     value: 'Offical-page',
     label: 'Offical Connects',
@@ -119,13 +135,13 @@ const predefinedQuestions = [
     label: 'College Achivements',
     icon: Award,
     response:
-    '**SBI COLLEGE YOUTH IDEATION 2025**\n' +
+    '**SBI COLLEGE YOUTH IDEATION 2025**\n\n' +
     'Mr. Vansh Shah, Mr. Sachin Verma, and Mr. Vikram Chaudhari from FYBFM, B.K. Birla Night College, Kalyan, secured a spot among the Top 100 teams out of 45,000 at IIT Delhi. Their innovative project focuses on digitalizing ambulance services, insurance, and hospital bed management.This national-level achievement highlights their potential to revolutionize emergency healthcare in India.\n\n' +
     'https://www.instagram.com/p/DITyZeTKi8Z/?img_index=1\n\n' +
-    '**Sports Achivement: South Asian Triathlon Championship**\n' +
+    '**Sports Achivement: South Asian Triathlon Championship**\n\n' +
     'Ms. Dolly Devidas Patil of FYBCom, B.K. Birla Night College, Kalyan, has brought immense pride to the institution by winning the Gold Medal at the South Asian Triathlon Championship held in Nepal on 25th and 26th April 2025. Her outstanding performance at this prestigious international event showcases her unwavering dedication, athletic excellence, and commitment to representing both her college and country with honor. This remarkable accomplishment stands as an inspiration to all aspiring athletes and a proud moment for the entire BKBNC family.\n\n' +
     'https://www.instagram.com/p/DI_YVk4hQia/\n\n' +
-    '**Secured the second prize at the national level RT MSSU Ideation Competition 2.0**\n' +
+     '**Secured the second prize at the national level RT MSSU Ideation Competition 2.0**\n\n' +
     'Ms. Sakshi Parekh, a Third-Year B.Sc. student at B.K. Birla Night College, Kalyan, secured the second prize at the national-level RT-MSSU Ideation Competition 2.0 for her project “Vishw Aadhar Bio Cement and Fertilizer.” Her idea, focused on converting organic waste into bio-cement and organic fertilizer, was recognized for its innovation, sustainability, and practical utility. Chosen from thousands of entries nationwide, her project earned her a cash prize of ₹2 lakhs and highlighted the college emphasis on research-driven and socially impactful education.\n\n' +
     'https://www.instagram.com/bkbirlanightcollege_kalyan/p/DI_Yl2ohZww/\n\n'
   },
@@ -175,7 +191,7 @@ const renderTextWithLinks = (text: string) => {
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-accent-foreground underline hover:text-accent-foreground/80 transition-colors"
+          className="text-foreground underline hover:text-foreground/80 transition-colors" // Changed to text-foreground
         >
           {matchedText}
         </a>
@@ -318,7 +334,7 @@ function ChatInterface() {
 
   return (
     <div className="flex h-screen flex-col items-center justify-center p-2 sm:p-4 bg-background text-foreground">
-      <Card className="w-full max-w-2xl shadow-2xl rounded-xl flex flex-col overflow-hidden h-full animate-in fade-in zoom-in-95 duration-500 ease-out bg-secondary/30 backdrop-blur-sm border border-primary/20">
+      <Card className="w-full max-w-2xl shadow-2xl rounded-xl flex flex-col overflow-hidden h-full animate-in fade-in zoom-in-95 duration-500 ease-out bg-secondary/30 backdrop-blur-sm border-primary/20">
         <CardHeader className="flex flex-row items-center space-x-4 p-4 border-b border-primary/20 bg-primary text-primary-foreground">
           <Avatar className="h-12 w-12 border-2 border-primary-foreground/50 rounded-full shadow-md">
             <AvatarImage
@@ -352,7 +368,7 @@ function ChatInterface() {
                       ${
                         message.sender === 'user'
                           ? 'bg-primary text-primary-foreground rounded-br-none' // User bubble: Navy Blue BG, White Text
-                          : 'bg-secondary text-secondary-foreground border border-border rounded-bl-none' // AI bubble: Grey BG
+                          : 'bg-muted text-muted-foreground border border-border rounded-bl-none' // AI bubble: Grey BG, Darker text
                       }`}
                   >
                     {renderTextWithLinks(message.text)}
@@ -362,7 +378,7 @@ function ChatInterface() {
                {isLoading && (
                  <div className="flex items-end gap-3 justify-start animate-in fade-in duration-300">
                    <div className="rounded-xl p-3 bg-secondary text-secondary-foreground border border-border shadow-lg flex items-center space-x-2 rounded-bl-none">
-                     <Loader2 className="h-5 w-5 animate-spin text-accent-foreground" /> {/* Changed text-accent to text-accent-foreground for better contrast on dark primary footer */}
+                     <Loader2 className="h-5 w-5 animate-spin text-accent-foreground" /> 
                      <span className="text-sm">Thinking...</span>
                    </div>
                  </div>
@@ -376,7 +392,7 @@ function ChatInterface() {
                  <Select onValueChange={handlePredefinedQuestionSelect} disabled={isLoading} >
                      <SelectTrigger
                         id="predefined-questions"
-                        className="w-full rounded-lg shadow-md bg-card text-card-foreground focus:ring-ring focus:border-ring" /* Updated focus to ring/border */
+                        className="w-full rounded-lg shadow-md bg-card text-card-foreground focus:ring-ring focus:border-ring" 
                         suppressHydrationWarning={true}
                      >
                         <SelectValue placeholder="Select a predefined question..." />
@@ -385,7 +401,7 @@ function ChatInterface() {
                          {predefinedQuestions.map((q) => (
                             <SelectItem key={q.value} value={q.value} className="cursor-pointer hover:bg-accent/10 focus:bg-accent/20">
                                  <div className="flex items-center gap-3">
-                                    <q.icon className="h-5 w-5 text-primary" /> {/* Changed text-accent to text-primary */}
+                                    <q.icon className="h-5 w-5 text-primary" /> 
                                     <span>{q.label}</span>
                                  </div>
                              </SelectItem>
@@ -403,7 +419,7 @@ function ChatInterface() {
               placeholder="Type your question here..."
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              className="flex-1 rounded-lg shadow-md bg-card text-card-foreground placeholder:text-muted-foreground focus:ring-ring focus:border-ring" /* Updated focus to ring/border */
+              className="flex-1 rounded-lg shadow-md bg-card text-card-foreground placeholder:text-muted-foreground focus:ring-ring focus:border-ring" 
               autoComplete="off"
               disabled={isLoading}
               suppressHydrationWarning={true}
@@ -455,7 +471,7 @@ function LoadingSkeleton() {
                  <Skeleton className="h-20 w-3/4 rounded-xl bg-secondary/50 rounded-bl-none" />
                </div>
                <div className="flex items-end gap-3 justify-end">
-                 <Skeleton className="h-12 w-1/2 rounded-xl bg-primary/50 rounded-br-none" /> {/* Changed from accent to primary */}
+                 <Skeleton className="h-12 w-1/2 rounded-xl bg-primary/50 rounded-br-none" /> 
                </div>
                 <div className="flex items-end gap-3 justify-start">
                  <Skeleton className="h-16 w-2/3 rounded-xl bg-secondary/50 rounded-bl-none" />
@@ -476,5 +492,7 @@ function LoadingSkeleton() {
    </div>
   );
 }
+
+    
 
     
