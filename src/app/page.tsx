@@ -50,22 +50,7 @@ const predefinedQuestions = [
     icon: GraduationCap,
     response:
       '**Admission Process**\n' +
-      'The admission process at our college is simple, transparent, and student-focused. Admissions are open to students from all backgrounds who meet the eligibility criteria as per university and government norms.\n\n' +
-      '**Online Registration:**\n' +
-      'Students must first register online through the college or university admission portal. Basic personal and academic details need to be filled out accurately.\n\n' +
-      '**Document Submission:**\n' +
-      'After registration, students must upload scanned copies of required documents such as:\n\n' +
-      '- SSC and HSC mark sheets\n' +
-      '- School/College Leaving Certificate\n' +
-      '- Caste certificate (if applicable)\n' +
-      '- Aadhar card and passport-size photograph\n' +
-      '- Gap certificate (if required)\n\n' +
-      '**Merit List & Counseling:**\n' +
-      'Admissions are based on merit. Once the merit list is announced, shortlisted students are invited for counseling sessions where they can select their preferred course and complete the admission process.\n\n' +
-      '**Fee Payment:**\n' +
-      'After document verification and counseling, students can proceed with the payment of fees either online or offline at the college office.\n\n' +
-      '**Confirmation of Admission:**\n' +
-      'On successful fee payment and verification, admission is confirmed, and students receive their ID card and timetable.\n\n'
+      'Refer this PDF: https://drive.google.com/file/d/1Ar_T5af0H69cmLxIM0asxcAKn5Vevzcp/view?usp=sharing \n'
   },
   {
     value: 'document-required',
@@ -98,7 +83,7 @@ const predefinedQuestions = [
     value: 'college-code',
     label: 'What is the College Code?',
     icon: CodeIcon,
-    response: "The College Code for B. K. Birla Night College Kalyan is 840.",
+    response: "The College Code for B. K. Birla Night College Kalyan is 1122.",
   },
   {
     value: 'programme-offered',
@@ -344,7 +329,7 @@ function ChatInterface() {
 
 
   return (
-    <div className="flex h-screen flex-col items-center justify-center p-2 sm:p-4 bg-background text-foreground">
+    <div className="flex h-screen w-screen flex-col items-center justify-center p-2 sm:p-4 bg-background text-foreground">
       <Card className="w-full max-w-4xl shadow-2xl rounded-xl flex flex-col overflow-hidden h-full animate-in fade-in zoom-in-95 duration-500 ease-out bg-card backdrop-blur-sm border-primary/20">
         <CardHeader className="flex flex-row items-center space-x-4 p-4 border-b border-primary/20 bg-primary text-primary-foreground">
           <Avatar className="h-12 w-12 border-2 border-primary-foreground/50 rounded-full shadow-md">
@@ -357,10 +342,10 @@ function ChatInterface() {
           </Avatar>
           <div className="flex flex-col">
             <CardTitle className="text-xl font-semibold text-primary-foreground">
-               BKBNC Connect - Simplifying Your College Journey
+               B. K. Birla Night College, Kalyan
             </CardTitle>
             <p className="text-sm text-primary-foreground/90">
-              B. K. Birla Night College Kalyan
+              Simplifying Your College Journey
             </p>
           </div>
         </CardHeader>
@@ -466,7 +451,7 @@ export default function Home() {
 
 function LoadingSkeleton() {
   return (
-    <div className="flex h-screen flex-col items-center justify-center p-2 sm:p-4 bg-background text-foreground animate-in fade-in duration-300">
+    <div className="flex h-screen w-screen flex-col items-center justify-center p-2 sm:p-4 bg-background text-foreground animate-in fade-in duration-300">
        <Card className="w-full max-w-4xl shadow-2xl rounded-xl flex flex-col overflow-hidden h-full bg-card backdrop-blur-sm border-primary/20">
          <CardHeader className="flex flex-row items-center space-x-4 p-4 border-b border-primary/20 bg-primary text-primary-foreground">
              <Skeleton className="h-12 w-12 rounded-full bg-primary-foreground/30" />
