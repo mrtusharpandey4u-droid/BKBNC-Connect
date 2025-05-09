@@ -129,7 +129,6 @@ const predefinedQuestions = [
   {
     value: 'Achivements',
     label: 'College Achivements',
-    icon: Award,
     response:
     '**SBI COLLEGE YOUTH IDEATION 2025**\n\n' +
     'Mr. Vansh Shah, Mr. Sachin Verma, and Mr. Vikram Chaudhari from FYBFM, B.K. Birla Night College, Kalyan, secured a spot among the Top 100 teams out of 45,000 at IIT Delhi. Their innovative project focuses on digitalizing ambulance services, insurance, and hospital bed management.This national-level achievement highlights their potential to revolutionize emergency healthcare in India.\n\n' +
@@ -139,7 +138,11 @@ const predefinedQuestions = [
     'https://www.instagram.com/p/DI_YVk4hQia/\n\n' +
      '**Secured the second prize at the national level RT MSSU Ideation Competition 2.0**\n\n' +
     'Ms. Sakshi Parekh, a Third-Year B.Sc. student at B.K. Birla Night College, Kalyan, secured the second prize at the national-level RT-MSSU Ideation Competition 2.0 for her project “Vishw Aadhar Bio Cement and Fertilizer.” Her idea, focused on converting organic waste into bio-cement and organic fertilizer, was recognized for its innovation, sustainability, and practical utility. Chosen from thousands of entries nationwide, her project earned her a cash prize of ₹2 lakhs and highlighted the college emphasis on research-driven and socially impactful education.\n\n' +
-    'https://www.instagram.com/bkbirlanightcollege_kalyan/p/DI_Yl2ohZww/\n\n'
+    'https://www.instagram.com/bkbirlanightcollege_kalyan/p/DI_Yl2ohZww/\n\n' +
+    '**The Entrepreneurship Cell of B.K. Birla Night College successfully organized the Startup Mela**\n\n' +
+    'an initiative to promote student innovation and entrepreneurship. Held under the guidance of Principal Dr. Bipinchandra Wadekar, the event featured diverse student-led stalls showcasing unique products and ideas. Dr. Rupesh Patil, along with faculty support, coordinated the event effectively. Dharani Mudaliar and Darshan Dubey served as event coordinators, while Atharva Jadhav and Laxmi Singh handled social media outreach. The event generated a total turnover of ₹9,810, providing students with a valuable platform to display their creativity and entrepreneurial potential.\n\n' +
+    'https://www.instagram.com/p/DBB7oAKKWx_/\n\n',
+    icon: Award,
   },
 ];
 
@@ -489,6 +492,7 @@ function LoadingSkeleton() {
    </div>
   );
 }
+
 
 
 
