@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, type FormEvent, Suspense, startTransition, useEffect, useRef } from 'react';
@@ -83,7 +84,7 @@ const predefinedQuestions = [
     value: 'college-code',
     label: 'What is the College Code?',
     icon: CodeXml,
-    response: "The College Code for B. K. Birla Night College Kalyan is 840.",
+    response: "The College Code for B. K. Birla Night College Kalyan is 1122.",
   },
   {
     value: 'programme-offered',
@@ -488,6 +489,7 @@ function LoadingSkeleton() {
    </div>
   );
 }
+
 
 
 
