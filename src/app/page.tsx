@@ -83,7 +83,7 @@ const predefinedQuestions = [
     value: 'college-code',
     label: 'What is the College Code?',
     icon: CodeIcon,
-    response: "The College Code for B. K. Birla Night College Kalyan is 1122.",
+    response: "The College Code for B. K. Birla Night College Kalyan is 840.",
   },
   {
     value: 'programme-offered',
@@ -345,7 +345,7 @@ function ChatInterface() {
                B. K. Birla Night College, Kalyan
             </CardTitle>
             <p className="text-sm text-primary-foreground/90">
-              Simplifying Your College Journey
+              BKBNC Connect - Simplifying Your College Journey
             </p>
           </div>
         </CardHeader>
@@ -488,4 +488,5 @@ function LoadingSkeleton() {
    </div>
   );
 }
+
 
