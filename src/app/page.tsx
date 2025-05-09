@@ -30,7 +30,7 @@ import {
   MapPin,
   LinkIcon,
   Contact,
-  CodeIcon,
+  CodeXml,
 } from 'lucide-react';
 import { answerStudentQuestion } from '@/ai/flows/answer-student-question';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -82,7 +82,7 @@ const predefinedQuestions = [
   {
     value: 'college-code',
     label: 'What is the College Code?',
-    icon: CodeIcon,
+    icon: CodeXml,
     response: "The College Code for B. K. Birla Night College Kalyan is 840.",
   },
   {
@@ -360,7 +360,7 @@ function ChatInterface() {
                   } animate-in fade-in-90 slide-in-from-bottom-6 duration-300 ease-out`}
                 >
                   <div
-                    className={`rounded-xl p-3 max-w-[85%] text-sm shadow-lg break-words whitespace-pre-wrap
+                    className={`rounded-xl p-3 max-w-[85%] text-sm shadow-lg break-words whitespace-pre-wrap text-justify
                       ${
                         message.sender === 'user'
                           ? 'bg-primary text-primary-foreground rounded-br-none'
@@ -488,5 +488,6 @@ function LoadingSkeleton() {
    </div>
   );
 }
+
 
 
