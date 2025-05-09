@@ -28,12 +28,9 @@ import {
   BookOpen,
   Award,
   MapPin,
-  ExternalLink,
-  Network,
-  Hash,
-  CodeIcon, 
-  LinkIcon, // Added LinkIcon
-  Contact, // Added Contact icon
+  LinkIcon,
+  Contact,
+  CodeIcon,
 } from 'lucide-react';
 import { answerStudentQuestion } from '@/ai/flows/answer-student-question';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -52,13 +49,22 @@ const predefinedQuestions = [
     label: 'What is the admission process ?',
     icon: GraduationCap,
     response:
-      'Admission Process\n' +
+      '**Admission Process**\n' +
       'The admission process at our college is simple, transparent, and student-focused. Admissions are open to students from all backgrounds who meet the eligibility criteria as per university and government norms.\n\n' +
-      'Online Registration:\n' +
+      '**Online Registration:**\n' +
       'Students must first register online through the college or university admission portal. Basic personal and academic details need to be filled out accurately.\n\n' +
-      'Fee Payment:\n' +
+      '**Document Submission:**\n' +
+      'After registration, students must upload scanned copies of required documents such as:\n\n' +
+      '- SSC and HSC mark sheets\n' +
+      '- School/College Leaving Certificate\n' +
+      '- Caste certificate (if applicable)\n' +
+      '- Aadhar card and passport-size photograph\n' +
+      '- Gap certificate (if required)\n\n' +
+      '**Merit List & Counseling:**\n' +
+      'Admissions are based on merit. Once the merit list is announced, shortlisted students are invited for counseling sessions where they can select their preferred course and complete the admission process.\n\n' +
+      '**Fee Payment:**\n' +
       'After document verification and counseling, students can proceed with the payment of fees either online or offline at the college office.\n\n' +
-      'Confirmation of Admission:\n' +
+      '**Confirmation of Admission:**\n' +
       'On successful fee payment and verification, admission is confirmed, and students receive their ID card and timetable.\n\n'
   },
   {
@@ -66,14 +72,14 @@ const predefinedQuestions = [
     label: 'Documents Requried for admission Processes.',
     icon: Users,
     response:
-      'Document Submission:\n' +
+      '**Document Submission:**\n' +
       'After registration, students must upload scanned copies of required documents such as:\n\n' +
       '- SSC and HSC mark sheets\n' +
       '- School/College Leaving Certificate\n' +
       '- Caste certificate (if applicable)\n' +
       '- Aadhar card and passport-size photograph\n' +
       '- Gap certificate (if required)\n\n' +
-      'Merit List & Counseling:\n' +
+      '**Merit List & Counseling:**\n' +
       'Admissions are based on merit. Once the merit list is announced, shortlisted students are invited for counseling sessions where they can select their preferred course and complete the admission process.\n\n'
   },
   {
@@ -91,8 +97,8 @@ const predefinedQuestions = [
   {
     value: 'college-code',
     label: 'What is the College Code?',
-    icon: CodeIcon, 
-    response: "The College Code for B. K. Birla Night College Kalyan is 1122.",
+    icon: CodeIcon,
+    response: "The College Code for B. K. Birla Night College Kalyan is 840.",
   },
   {
     value: 'programme-offered',
@@ -104,10 +110,10 @@ const predefinedQuestions = [
     value: 'College-location',
     label: 'Where B. K. Birla Night College is Located?',
     icon: MapPin,
-    response: 
-      'Here is the Google Map location of B. K. Birla Night College, Kalyan: \n' +
-      '🔗B.K. Birla Night College on Google Maps: https://www.google.com/maps/place/B.K.+Birla+College+of+Arts,+Science+%26+Commerce/@19.243788,73.136428,17z \n' +
-      '📍 Address on Map:\n' +
+    response:
+      '**Here is the Google Map location of B. K. Birla Night College, Kalyan:** \n' +
+      '🔗B.K. Birla Night College on Google Maps: https://shorturl.at/vKzDC \n' +
+      '📍 **Address on Map:**\n' +
       'B.K. Birla College of Arts, Science & Commerce,\n' +
       'Birla College Road, Kalyan West,\n' +
       'Maharashtra 421301, India \n\n'
@@ -116,16 +122,16 @@ const predefinedQuestions = [
   {
     value: 'Offical-page',
     label: 'Offical Connects',
-    icon: Contact, 
+    icon: Contact,
     response:
       '**Offical Website:**\n' +
-      'https://bkbirlanightcollegekalyan.com/ \n\n' +
+      'https://bkbirlanightcollegekalyan.com/\n\n' +
       '**Instagram:**\n' +
-      'https://www.instagram.com/bkbirlanightcollege_kalyan/ \n\n' +
+      'https://www.instagram.com/bkbirlanightcollege_kalyan/\n\n' +
       '**Facebook:**\n' +
-      'https://www.facebook.com/BKBirlaNightCollegeKalyan \n\n' +
+      'https://www.facebook.com/BKBirlaNightCollegeKalyan\n\n' +
       '**YouTube:**\n' +
-      'https://www.youtube.com/@B.K.BIRLANIGHTCOLLEGEKALYAN \n\n'
+      'https://www.youtube.com/@B.K.BIRLANIGHTCOLLEGEKALYAN\n\n'
   },
 
   {
@@ -160,7 +166,7 @@ const renderTextWithLinks = (text: string) => {
   const regex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])|(\bwww\.[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])|(\*\*[^*]+\*\*)/ig;
 
   if (typeof text !== 'string') {
-    return [text]; 
+    return [text];
   }
 
   let match;
@@ -186,7 +192,7 @@ const renderTextWithLinks = (text: string) => {
         if (href.startsWith('www.')) {
           href = 'https://' + href;
         } else if (href.includes('.')) { // Basic check if it looks like a domain
-          href = 'https://' + href; 
+          href = 'https://' + href;
         }
       }
       elements.push(
@@ -195,7 +201,7 @@ const renderTextWithLinks = (text: string) => {
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-accent-foreground underline hover:text-accent-foreground/80 transition-colors" // Keep URLs styled with accent color
+          className="text-accent-foreground underline hover:text-accent-foreground/80 transition-colors"
         >
           {matchedText}
         </a>
@@ -223,10 +229,10 @@ function ChatInterface() {
 
   useEffect(() => {
     setIsMounted(true);
-    const initialAiMessageId = typeof crypto !== 'undefined' && crypto.randomUUID 
-      ? crypto.randomUUID() 
+    const initialAiMessageId = typeof crypto !== 'undefined' && crypto.randomUUID
+      ? crypto.randomUUID()
       : Math.random().toString(36).substring(2);
-    
+
     setMessages([
       {
         id: initialAiMessageId,
@@ -280,7 +286,7 @@ function ChatInterface() {
                 { id: userMessageId, sender: 'user', text: selectedQuestion.label },
                 { id: aiMessageId, sender: 'ai', text: selectedQuestion.response },
             ]);
-            requestAnimationFrame(scrollToBottom); 
+            requestAnimationFrame(scrollToBottom);
         } else {
             handleSubmit(selectedQuestion.label);
         }
@@ -307,7 +313,7 @@ function ChatInterface() {
     ]);
     setInputValue('');
     setIsLoading(true);
-    requestAnimationFrame(scrollToBottom); 
+    requestAnimationFrame(scrollToBottom);
 
 
     startTransition(async () => {
@@ -331,7 +337,7 @@ function ChatInterface() {
           ]);
         } finally {
           setIsLoading(false);
-           requestAnimationFrame(scrollToBottom); 
+           requestAnimationFrame(scrollToBottom);
         }
     });
   };
@@ -339,7 +345,7 @@ function ChatInterface() {
 
   return (
     <div className="flex h-screen flex-col items-center justify-center p-2 sm:p-4 bg-background text-foreground">
-      <Card className="w-full max-w-2xl shadow-2xl rounded-xl flex flex-col overflow-hidden h-full animate-in fade-in zoom-in-95 duration-500 ease-out bg-card backdrop-blur-sm border-primary/20">
+      <Card className="w-full max-w-4xl shadow-2xl rounded-xl flex flex-col overflow-hidden h-full animate-in fade-in zoom-in-95 duration-500 ease-out bg-card backdrop-blur-sm border-primary/20">
         <CardHeader className="flex flex-row items-center space-x-4 p-4 border-b border-primary/20 bg-primary text-primary-foreground">
           <Avatar className="h-12 w-12 border-2 border-primary-foreground/50 rounded-full shadow-md">
             <AvatarImage
@@ -372,8 +378,8 @@ function ChatInterface() {
                     className={`rounded-xl p-3 max-w-[85%] text-sm shadow-lg break-words whitespace-pre-wrap
                       ${
                         message.sender === 'user'
-                          ? 'bg-primary text-primary-foreground rounded-br-none' 
-                          : 'bg-muted text-muted-foreground border border-border rounded-bl-none' 
+                          ? 'bg-primary text-primary-foreground rounded-br-none'
+                          : 'bg-muted text-muted-foreground border border-border rounded-bl-none'
                       }`}
                   >
                     {renderTextWithLinks(message.text)}
@@ -383,7 +389,7 @@ function ChatInterface() {
                {isLoading && (
                  <div className="flex items-end gap-3 justify-start animate-in fade-in duration-300">
                    <div className="rounded-xl p-3 bg-muted text-muted-foreground border border-border shadow-lg flex items-center space-x-2 rounded-bl-none">
-                     <Loader2 className="h-5 w-5 animate-spin text-accent-foreground" /> 
+                     <Loader2 className="h-5 w-5 animate-spin text-accent-foreground" />
                      <span className="text-sm">Thinking...</span>
                    </div>
                  </div>
@@ -397,7 +403,7 @@ function ChatInterface() {
                  <Select onValueChange={handlePredefinedQuestionSelect} disabled={isLoading} >
                      <SelectTrigger
                         id="predefined-questions"
-                        className="w-full rounded-lg shadow-md bg-card text-card-foreground focus:ring-ring focus:border-ring" 
+                        className="w-full rounded-lg shadow-md bg-card text-card-foreground focus:ring-ring focus:border-ring"
                         suppressHydrationWarning={true}
                      >
                         <SelectValue placeholder="Select a predefined question..." />
@@ -406,7 +412,7 @@ function ChatInterface() {
                          {predefinedQuestions.map((q) => (
                             <SelectItem key={q.value} value={q.value} className="cursor-pointer hover:bg-accent/10 focus:bg-accent/20">
                                  <div className="flex items-center gap-3">
-                                    <q.icon className="h-5 w-5 text-primary" /> 
+                                    <q.icon className="h-5 w-5 text-primary" />
                                     <span>{q.label}</span>
                                  </div>
                              </SelectItem>
@@ -424,7 +430,7 @@ function ChatInterface() {
               placeholder="Type your question here..."
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              className="flex-1 rounded-lg shadow-md bg-card text-card-foreground placeholder:text-muted-foreground focus:ring-ring focus:border-ring" 
+              className="flex-1 rounded-lg shadow-md bg-card text-card-foreground placeholder:text-muted-foreground focus:ring-ring focus:border-ring"
               autoComplete="off"
               disabled={isLoading}
               suppressHydrationWarning={true}
@@ -461,12 +467,12 @@ export default function Home() {
 function LoadingSkeleton() {
   return (
     <div className="flex h-screen flex-col items-center justify-center p-2 sm:p-4 bg-background text-foreground animate-in fade-in duration-300">
-       <Card className="w-full max-w-2xl shadow-2xl rounded-xl flex flex-col overflow-hidden h-full bg-card backdrop-blur-sm border-primary/20">
+       <Card className="w-full max-w-4xl shadow-2xl rounded-xl flex flex-col overflow-hidden h-full bg-card backdrop-blur-sm border-primary/20">
          <CardHeader className="flex flex-row items-center space-x-4 p-4 border-b border-primary/20 bg-primary text-primary-foreground">
              <Skeleton className="h-12 w-12 rounded-full bg-primary-foreground/30" />
              <div className="flex flex-col space-y-1.5">
-                 <Skeleton className="h-6 w-72 rounded-md bg-primary-foreground/30" /> 
-                 <Skeleton className="h-4 w-48 rounded-md bg-primary-foreground/30" /> 
+                 <Skeleton className="h-6 w-72 rounded-md bg-primary-foreground/30" />
+                 <Skeleton className="h-4 w-48 rounded-md bg-primary-foreground/30" />
              </div>
          </CardHeader>
          <CardContent className="p-0 flex-1 overflow-hidden bg-background/80">
@@ -476,7 +482,7 @@ function LoadingSkeleton() {
                  <Skeleton className="h-20 w-3/4 rounded-xl bg-muted rounded-bl-none" />
                </div>
                <div className="flex items-end gap-3 justify-end">
-                 <Skeleton className="h-12 w-1/2 rounded-xl bg-primary text-primary-foreground rounded-br-none" /> 
+                 <Skeleton className="h-12 w-1/2 rounded-xl bg-primary text-primary-foreground rounded-br-none" />
                </div>
                 <div className="flex items-end gap-3 justify-start">
                  <Skeleton className="h-16 w-2/3 rounded-xl bg-muted rounded-bl-none" />
