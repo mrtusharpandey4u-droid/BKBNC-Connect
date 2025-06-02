@@ -32,6 +32,8 @@ import {
   LinkIcon,
   Contact,
   CodeXml,
+  Clock10Icon,
+  Clock11Icon,
 } from 'lucide-react';
 import { answerStudentQuestion } from '@/ai/flows/answer-student-question';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -45,6 +47,18 @@ interface Message {
 }
 
 const predefinedQuestions = [
+  {
+    value: 'Timings',
+    label: 'What Are The College Timings ?',
+    icon: Clock10Icon,
+    response: "The Working Hours of B. K. Birla Night College Kalyan is: 4:00 pm to 8:00 pm "
+  },
+  {
+    value: 'Inquiry Admission',
+    label: 'What Are The Inquiry Timings For The College ?',
+    icon: Clock11Icon,
+    response: "The Inquiry Hours of B. K. Birla Night College Kalyan is: 1:00 pm to 5:00 pm"
+  },
   {
     value: 'admission-requirements',
     label: 'What is the admission process ?',
@@ -75,6 +89,24 @@ const predefinedQuestions = [
     response: "You can start your admission processes online, while refering this link: https://youtu.be/mHH2YKNuihw\nand refer PDF: https://pdf.ac/2SpmH1"
   },
   {
+    value: 'Reference-link',
+    label: 'How to fill up the Pre-Admission form - Creating Profile / Registration',
+    icon: LinkIcon,
+    response:"You can create your profile in Pre-Admission form,while referring the following link:https://youtu.be/aSUsW8zGwrk"
+  },
+  {
+    value: 'Check-link',
+    label: 'How to create ABC ID/Apaar ID?',
+    icon: LinkIcon,
+    response:"To create your ABC ID Refer this link: https://youtu.be/C5uZf8sG9HU & To fill The Form: https://www.abc.gov.in/, To print the ABC ID Follow this link: https://youtu.be/8Wac3jIjnAs"
+  },
+  {
+    value: 'Reference-Link',
+    label: 'How To Select Programme for First Year Admission?',
+    icon: LinkIcon,
+    response: "You can select your programme, while refering this link: https://youtu.be/t-I-oBTf0vc?si=Fl-Fsh-urTxFG3gG"
+  },
+  {
     value: 'college-profile',
     label: 'Where can I find the college profile or "About Us" information?',
     icon: Info,
@@ -90,7 +122,7 @@ const predefinedQuestions = [
     value: 'programme-offered',
     label: 'Programme Offered by the College?',
     icon: BookOpen,
-    response: "1. B.A.\n2. B.Sc.\n3. B.Com.\n4. B.Com. (Management Studies)\n5. B.Com. (Accounting & Finance)\n6. B.Com. (Financial Markets)\n7. B.Sc. (Computer Science)"
+    response: "1. B.A. (3180161)\n2. B.Sc. (1150161)\n3. B.Com. (2126161)\n4. B.Com. (Management Studies) (2126561)\n5. B.Com. (Accounting & Finance) (2126261)\n6. B.Com. (Financial Markets) (2126361)\n7. B.Sc. (Computer Science) (1151061) "
   },
   {
     value: 'College-location',
@@ -104,7 +136,6 @@ const predefinedQuestions = [
       'Birla College Road, Kalyan West,\n' +
       'Maharashtra 421301, India \n\n'
   },
-
   {
     value: 'Offical-page',
     label: 'Offical Connects',
@@ -321,7 +352,7 @@ function ChatInterface() {
             {
               id: errorAiMessageId,
               sender: 'ai',
-              text: 'Sorry, I encountered an error trying to answer your question. Please try again.',
+              text: 'Kindly Contact College For Further Assitance.',
             },
           ]);
         } finally {
@@ -338,7 +369,7 @@ function ChatInterface() {
         <CardHeader className="flex flex-row items-center space-x-4 p-4 border-b border-primary/20 bg-primary text-primary-foreground">
           <Avatar className="h-12 w-12 border-2 border-primary-foreground/50 rounded-full shadow-md">
             <AvatarImage
-              src="https://scontent.fbom26-2.fna.fbcdn.net/v/t39.30808-1/309894515_391607699846414_3486837502365611657_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=108&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=S9UMlr9JFv0Q7kNvwFS2V8l&_nc_oc=AdljX0Sr6o7ncCQz1ZSw_7qUqXQz63TCzL2IAV3CF2PJrfKMEfOt0jPdwYEebEs6Drk&_nc_zt=24&_nc_ht=scontent.fbom26-2.fna&_nc_gid=pPCIynDh6wHaLXkyHflzkA&oh=00_AfIwejgoWYIBuRto8PZ0eSu42ZYHAr9oC4cYaSZKOVYI3A&oe=681FA8C8"
+              src="https://bkbirlanightcollegekalyan.com/img/logo.png"
               alt="BKBNC Logo"
               data-ai-hint="college logo"
             />
