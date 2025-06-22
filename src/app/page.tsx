@@ -63,24 +63,24 @@ const predefinedQuestions = [
     value: 'admission-requirements',
     label: 'What is the admission process ?',
     icon: GraduationCap,
-    response:
-      '**Admission Process**\n' +
-      'Refer this PDF: https://drive.google.com/file/d/1Ar_T5af0H69cmLxIM0asxcAKn5Vevzcp/view?usp=sharing \n'
+    response: `**Admission Process**
+Refer this PDF: https://drive.google.com/file/d/1Ar_T5af0H69cmLxIM0asxcAKn5Vevzcp/view?usp=sharing`
   },
   {
     value: 'document-required',
     label: 'Documents Requried for admission Processes.',
     icon: Users,
-    response:
-      '**Document Submission:**\n' +
-      'After registration, students must upload scanned copies of required documents such as:\n\n' +
-      '- SSC and HSC mark sheets\n' +
-      '- School/College Leaving Certificate\n' +
-      '- Caste certificate (if applicable)\n' +
-      '- Aadhar card and passport-size photograph\n' +
-      '- Gap certificate (if required)\n\n' +
-      '**Merit List & Counseling:**\n' +
-      'Admissions are based on merit. Once the merit list is announced, shortlisted students are invited for counseling sessions where they can select their preferred course and complete the admission process.\n\n'
+    response: `**Document Submission:**
+After registration, students must upload scanned copies of required documents such as:
+
+- SSC and HSC mark sheets
+- School/College Leaving Certificate
+- Caste certificate (if applicable)
+- Aadhar card and passport-size photograph
+- Gap certificate (if required)
+
+**Merit List & Counseling:**
+Admissions are based on merit. Once the merit list is announced, shortlisted students are invited for counseling sessions where they can select their preferred course and complete the admission process.`
   },
   {
     value: 'admission-link',
@@ -116,41 +116,47 @@ const predefinedQuestions = [
     value: 'college-code',
     label: 'What is the College Code?',
     icon: CodeXml,
-    response: "The College Code for B. K. Birla Night College Kalyan is 1122.",
+    response: "The College Code for B. K. Birla Night College Kalyan is 840.",
   },
   {
     value: 'programme-offered',
     label: 'Programme Offered by the College?',
     icon: BookOpen,
-    response: "1. B.A. (3180161)\n2. B.Sc. (1150161)\n3. B.Com. (2126161)\n4. B.Com. (Management Studies) (2126561)\n5. B.Com. (Accounting & Finance) (2126261)\n6. B.Com. (Financial Markets) (2126361)\n7. B.Sc. (Computer Science) (1151061) "
+    response: `1. B.A. (3180161)
+2. B.Sc. (1150161)
+3. B.Com. (2126161)
+4. B.Com. (Management Studies) (2126561)
+5. B.Com. (Accounting & Finance) (2126261)
+6. B.Com. (Financial Markets) (2126361)
+7. B.Sc. (Computer Science) (1151061)`
   },
   {
     value: 'College-location',
     label: 'Where B. K. Birla Night College is Located?',
     icon: MapPin,
-    response:
-      '**Here is the Google Map location of B. K. Birla Night College, Kalyan:** \n' +
-      '🔗B.K. Birla Night College on Google Maps: https://shorturl.at/vKzDC \n' +
-      '📍 **Address on Map:**\n' +
-      'B.K. Birla College of Arts, Science & Commerce,\n' +
-      'Birla College Road, Kalyan West,\n' +
-      'Maharashtra 421301, India \n\n'
+    response: `**Here is the Google Map location of B. K. Birla Night College, Kalyan:**
+🔗B.K. Birla Night College on Google Maps: https://shorturl.at/vKzDC
+📍 **Address on Map:**
+B.K. Birla College of Arts, Science & Commerce,
+Birla College Road, Kalyan West,
+Maharashtra 421301, India`
   },
   {
     value: 'Offical-page',
     label: 'Offical Connects',
     icon: Contact,
-    response:
-      '**Offical Website:**\n' +
-      'https://bkbirlanightcollegekalyan.com/\n\n' +
-      '**Instagram:**\n' +
-      'https://www.instagram.com/bkbirlanightcollege_kalyan/\n\n' +
-      '**Facebook:**\n' +
-      'https://www.facebook.com/BKBirlaNightCollegeKalyan\n\n' +
-      '**YouTube:**\n' +
-      'https://www.youtube.com/@B.K.BIRLANIGHTCOLLEGEKALYAN\n\n'
-  },
+    response: `**Offical Website:**
+https://bkbirlanightcollegekalyan.com/
 
+**Instagram:**
+https://www.instagram.com/bkbirlanightcollege_kalyan/
+
+**Facebook:**
+https://www.facebook.com/BKBirlaNightCollegeKalyan
+
+**YouTube:**
+https://www.youtube.com/@B.K.BIRLANIGHTCOLLEGEKALYAN`
+  },
   {
     value: 'student-life',
     label: 'Tell me about student life and clubs.',
@@ -160,20 +166,30 @@ const predefinedQuestions = [
   {
     value: 'Achivements',
     label: 'College Achivements',
-    response:
-    '**SBI COLLEGE YOUTH IDEATION 2025**\n\n' +
-    'Mr. Vansh Shah, Mr. Sachin Verma, and Mr. Vikram Chaudhari from FYBFM, B.K. Birla Night College, Kalyan, secured a spot among the Top 100 teams out of 45,000 at IIT Delhi. Their innovative project focuses on digitalizing ambulance services, insurance, and hospital bed management.This national-level achievement highlights their potential to revolutionize emergency healthcare in India.\n\n' +
-    'https://www.instagram.com/p/DITyZeTKi8Z/?img_index=1\n\n' +
-    '**Sports Achivement: South Asian Triathlon Championship**\n\n' +
-    'Ms. Dolly Devidas Patil of FYBCom, B.K. Birla Night College, Kalyan, has brought immense pride to the institution by winning the Gold Medal at the South Asian Triathlon Championship held in Nepal on 25th and 26th April 2025. Her outstanding performance at this prestigious international event showcases her unwavering dedication, athletic excellence, and commitment to representing both her college and country with honor. This remarkable accomplishment stands as an inspiration to all aspiring athletes and a proud moment for the entire BKBNC family.\n\n' +
-    'https://www.instagram.com/p/DI_YVk4hQia/\n\n' +
-     '**Secured the second prize at the national level RT MSSU Ideation Competition 2.0**\n\n' +
-    'Ms. Sakshi Parekh, a Third-Year B.Sc. student at B.K. Birla Night College, Kalyan, secured the second prize at the national-level RT-MSSU Ideation Competition 2.0 for her project “Vishw Aadhar Bio Cement and Fertilizer.” Her idea, focused on converting organic waste into bio-cement and organic fertilizer, was recognized for its innovation, sustainability, and practical utility. Chosen from thousands of entries nationwide, her project earned her a cash prize of ₹2 lakhs and highlighted the college emphasis on research-driven and socially impactful education.\n\n' +
-    'https://www.instagram.com/bkbirlanightcollege_kalyan/p/DI_Yl2ohZww/\n\n' +
-    '**The Entrepreneurship Cell of B.K. Birla Night College successfully organized the Startup Mela**\n\n' +
-    'an initiative to promote student innovation and entrepreneurship. Held under the guidance of Principal Dr. Bipinchandra Wadekar, the event featured diverse student-led stalls showcasing unique products and ideas. Dr. Rupesh Patil, along with faculty support, coordinated the event effectively. Dharani Mudaliar and Darshan Dubey served as event coordinators, while Atharva Jadhav and Laxmi Singh handled social media outreach. The event generated a total turnover of ₹9,810, providing students with a valuable platform to display their creativity and entrepreneurial potential.\n\n' +
-    'https://www.instagram.com/p/DBB7oAKKWx_/\n\n',
     icon: Award,
+    response: `**SBI COLLEGE YOUTH IDEATION 2025**
+
+Mr. Vansh Shah, Mr. Sachin Verma, and Mr. Vikram Chaudhari from FYBFM, B.K. Birla Night College, Kalyan, secured a spot among the Top 100 teams out of 45,000 at IIT Delhi. Their innovative project focuses on digitalizing ambulance services, insurance, and hospital bed management.This national-level achievement highlights their potential to revolutionize emergency healthcare in India.
+
+https://www.instagram.com/p/DITyZeTKi8Z/?img_index=1
+
+**Sports Achivement: South Asian Triathlon Championship**
+
+Ms. Dolly Devidas Patil of FYBCom, B.K. Birla Night College, Kalyan, has brought immense pride to the institution by winning the Gold Medal at the South Asian Triathlon Championship held in Nepal on 25th and 26th April 2025. Her outstanding performance at this prestigious international event showcases her unwavering dedication, athletic excellence, and commitment to representing both her college and country with honor. This remarkable accomplishment stands as an inspiration to all aspiring athletes and a proud moment for the entire BKBNC family.
+
+https://www.instagram.com/p/DI_YVk4hQia/
+
+**Secured the second prize at the national level RT MSSU Ideation Competition 2.0**
+
+Ms. Sakshi Parekh, a Third-Year B.Sc. student at B.K. Birla Night College, Kalyan, secured the second prize at the national-level RT-MSSU Ideation Competition 2.0 for her project “Vishw Aadhar Bio Cement and Fertilizer.” Her idea, focused on converting organic waste into bio-cement and organic fertilizer, was recognized for its innovation, sustainability, and practical utility. Chosen from thousands of entries nationwide, her project earned her a cash prize of ₹2 lakhs and highlighted the college emphasis on research-driven and socially impactful education.
+
+https://www.instagram.com/bkbirlanightcollege_kalyan/p/DI_Yl2ohZww/
+
+**The Entrepreneurship Cell of B.K. Birla Night College successfully organized the Startup Mela**
+
+an initiative to promote student innovation and entrepreneurship. Held under the guidance of Principal Dr. Bipinchandra Wadekar, the event featured diverse student-led stalls showcasing unique products and ideas. Dr. Rupesh Patil, along with faculty support, coordinated the event effectively. Dharani Mudaliar and Darshan Dubey served as event coordinators, while Atharva Jadhav and Laxmi Singh handled social media outreach. The event generated a total turnover of ₹9,810, providing students with a valuable platform to display their creativity and entrepreneurial potential.
+
+https://www.instagram.com/p/DBB7oAKKWx_/`
   },
 ];
 
@@ -523,8 +539,3 @@ function LoadingSkeleton() {
    </div>
   );
 }
-
-
-
-
-
