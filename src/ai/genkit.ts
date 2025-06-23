@@ -1,7 +1,7 @@
 import 'dotenv/config'; // Load environment variables
 import { googleAI } from '@genkit-ai/googleai';
 import { genkit } from 'genkit';
-import { nextjs } from '@genkit-ai/next';
+import nextjs from '@genkit-ai/next';
 
 // Initialize Genkit with required plugins
 export const ai = genkit({
