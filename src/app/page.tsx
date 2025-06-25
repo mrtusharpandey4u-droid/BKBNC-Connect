@@ -116,7 +116,7 @@ Admissions are based on merit. Once the merit list is announced, shortlisted stu
     value: 'college-code',
     label: 'What is the College Code?',
     icon: CodeXml,
-    response: "The College Code for B. K. Birla Night College Kalyan is 840.",
+    response: "The College Code for B. K. Birla Night College Kalyan is 1122.",
   },
   {
     value: 'programme-offered',
