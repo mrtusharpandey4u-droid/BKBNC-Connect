@@ -1,3 +1,4 @@
+'use server';
 import 'dotenv/config'; // Ensure environment variables are loaded
 import { googleAI } from '@genkit-ai/googleai';
 import { genkit } from 'genkit';
@@ -10,8 +11,6 @@ import './flows/answer-student-question';
 // However, if specific dev-only configurations are needed, you can define them here.
 // This basic setup ensures the dev UI can start. For actual execution, it relies
 // on the configuration in `genkit.ts` when flows are called via the application.
-
-console.log("Starting Genkit in development mode...");
 
 // You might configure a separate Genkit instance for dev-specific tasks or tools if necessary
 // For example, defining dev-only flows or using different plugins for local testing.

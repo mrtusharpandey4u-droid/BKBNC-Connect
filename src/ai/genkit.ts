@@ -13,5 +13,3 @@ export const ai = genkit({
     nextjs(),
   ],
 });
-
-console.log('Genkit instance initialized.');
