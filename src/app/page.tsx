@@ -164,8 +164,8 @@ https://www.youtube.com/@B.K.BIRLANIGHTCOLLEGEKALYAN`
     response: "Life at our college is vibrant, enriching, and thoughtfully designed to support every student's growth, especially working students who benefit from convenient class timings. With a faculty that's not just qualified but deeply committed, students receive quality education in a secure, inclusive environment. The campus buzzes with energy—from well-equipped science labs that spark innovation, to active participation in state and national-level platforms like Aavishkar, Ideathon (Mumbai), RT-MSSU Ideation, and SBI Youth Ideation. Beyond academics, students engage in a dynamic mix of co-curricular and extracurricular activities including Sports, NCC, NSS, and cultural fests, shaping holistic development. The college also offers scholarships through management, easing financial burdens for many. A strong Training and Placement Cell prepares students for the real world, while the Mpower Cell provides personal counseling to ensure mental well-being. Altogether, student life here is a balanced blend of learning, leadership, and lifelong memories."
   },
   {
-    value: 'Achivements',
-    label: 'College Achivements',
+    value: 'Achievements',
+    label: 'College Achievements',
     icon: Award,
     response: `**SBI COLLEGE YOUTH IDEATION 2025**
 
