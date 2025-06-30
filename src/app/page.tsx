@@ -68,7 +68,7 @@ Refer this PDF: https://drive.google.com/file/d/1Ar_T5af0H69cmLxIM0asxcAKn5Vevzc
   },
   {
     value: 'document-required',
-    label: 'Documents Requried for admission Processes.',
+    label: 'Documents Required for admission Processes.',
     icon: Users,
     response: `**Document Submission:**
 After registration, students must upload scanned copies of required documents such as:
@@ -89,7 +89,7 @@ Admissions are based on merit. Once the merit list is announced, shortlisted stu
     response: "You can start your admission processes online, while refering this link: https://youtu.be/mHH2YKNuihw\nand refer PDF: https://pdf.ac/2SpmH1"
   },
   {
-    value: 'Reference-link',
+    value: 'pre-admission-profile-creation',
     label: 'How to fill up the Pre-Admission form - Creating Profile / Registration',
     icon: LinkIcon,
     response:"You can create your profile in Pre-Admission form,while referring the following link:https://youtu.be/aSUsW8zGwrk"
@@ -101,7 +101,7 @@ Admissions are based on merit. Once the merit list is announced, shortlisted stu
     response:"To create your ABC ID Refer this link: https://youtu.be/C5uZf8sG9HU & To fill The Form: https://www.abc.gov.in/, To print the ABC ID Follow this link: https://youtu.be/8Wac3jIjnAs"
   },
   {
-    value: 'Reference-Link',
+    value: 'programme-selection-first-year',
     label: 'How To Select Programme for First Year Admission?',
     icon: LinkIcon,
     response: "You can select your programme, while refering this link: https://youtu.be/t-I-oBTf0vc?si=Fl-Fsh-urTxFG3gG"
@@ -167,7 +167,7 @@ https://www.youtube.com/@B.K.BIRLANIGHTCOLLEGEKALYAN`
     value: 'Achievements',
     label: 'College Achievements',
     icon: Award,
-    response: `**SBI COLLEGE YOUTH IDEATION 2025**
+    response: `**SBI COLLEGE YOUTH IDEATION 2024**
 
 Mr. Vansh Shah, Mr. Sachin Verma, and Mr. Vikram Chaudhari from FYBFM, B.K. Birla Night College, Kalyan, secured a spot among the Top 100 teams out of 45,000 at IIT Delhi. Their innovative project focuses on digitalizing ambulance services, insurance, and hospital bed management.This national-level achievement highlights their potential to revolutionize emergency healthcare in India.
 
@@ -175,7 +175,7 @@ https://www.instagram.com/p/DITyZeTKi8Z/?img_index=1
 
 **Sports Achivement: South Asian Triathlon Championship**
 
-Ms. Dolly Devidas Patil of FYBCom, B.K. Birla Night College, Kalyan, has brought immense pride to the institution by winning the Gold Medal at the South Asian Triathlon Championship held in Nepal on 25th and 26th April 2025. Her outstanding performance at this prestigious international event showcases her unwavering dedication, athletic excellence, and commitment to representing both her college and country with honor. This remarkable accomplishment stands as an inspiration to all aspiring athletes and a proud moment for the entire BKBNC family.
+Ms. Dolly Devidas Patil of FYBCom, B.K. Birla Night College, Kalyan, has brought immense pride to the institution by winning the Gold Medal at the South Asian Triathlon Championship held in Nepal on 25th and 26th April 2024. Her outstanding performance at this prestigious international event showcases her unwavering dedication, athletic excellence, and commitment to representing both her college and country with honor. This remarkable accomplishment stands as an inspiration to all aspiring athletes and a proud moment for the entire BKBNC family.
 
 https://www.instagram.com/p/DI_YVk4hQia/
 
