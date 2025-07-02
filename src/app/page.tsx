@@ -171,25 +171,25 @@ https://www.youtube.com/@B.K.BIRLANIGHTCOLLEGEKALYAN`
 
 Mr. Vansh Shah, Mr. Sachin Verma, and Mr. Vikram Chaudhari from FYBFM, B.K. Birla Night College, Kalyan, secured a spot among the Top 100 teams out of 45,000 at IIT Delhi. Their innovative project focuses on digitalizing ambulance services, insurance, and hospital bed management.This national-level achievement highlights their potential to revolutionize emergency healthcare in India.
 
-https://www.instagram.com/p/DITyZeTKi8Z/?img_index=1
+(See more on Instagram: https://www.instagram.com/p/DITyZeTKi8Z/?img_index=1)
 
 **Sports Achivement: South Asian Triathlon Championship**
 
 Ms. Dolly Devidas Patil of FYBCom, B.K. Birla Night College, Kalyan, has brought immense pride to the institution by winning the Gold Medal at the South Asian Triathlon Championship held in Nepal on 25th and 26th April 2024. Her outstanding performance at this prestigious international event showcases her unwavering dedication, athletic excellence, and commitment to representing both her college and country with honor. This remarkable accomplishment stands as an inspiration to all aspiring athletes and a proud moment for the entire BKBNC family.
 
-https://www.instagram.com/p/DI_YVk4hQia/
+(See more on Instagram: https://www.instagram.com/p/DI_YVk4hQia/)
 
 **Secured the second prize at the national level RT MSSU Ideation Competition 2.0**
 
 Ms. Sakshi Parekh, a Third-Year B.Sc. student at B.K. Birla Night College, Kalyan, secured the second prize at the national-level RT-MSSU Ideation Competition 2.0 for her project “Vishw Aadhar Bio Cement and Fertilizer.” Her idea, focused on converting organic waste into bio-cement and organic fertilizer, was recognized for its innovation, sustainability, and practical utility. Chosen from thousands of entries nationwide, her project earned her a cash prize of ₹2 lakhs and highlighted the college emphasis on research-driven and socially impactful education.
 
-https://www.instagram.com/bkbirlanightcollege_kalyan/p/DI_Yl2ohZww/
+(See more on Instagram: https://www.instagram.com/bkbirlanightcollege_kalyan/p/DI_Yl2ohZww/)
 
 **The Entrepreneurship Cell of B.K. Birla Night College successfully organized the Startup Mela**
 
 an initiative to promote student innovation and entrepreneurship. Held under the guidance of Principal Dr. Bipinchandra Wadekar, the event featured diverse student-led stalls showcasing unique products and ideas. Dr. Rupesh Patil, along with faculty support, coordinated the event effectively. Dharani Mudaliar and Darshan Dubey served as event coordinators, while Atharva Jadhav and Laxmi Singh handled social media outreach. The event generated a total turnover of ₹9,810, providing students with a valuable platform to display their creativity and entrepreneurial potential.
 
-https://www.instagram.com/p/DBB7oAKKWx_/`
+(See more on Instagram: https://www.instagram.com/p/DBB7oAKKWx_/)`
   },
 ];
 
