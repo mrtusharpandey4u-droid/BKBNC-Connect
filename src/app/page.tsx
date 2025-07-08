@@ -61,7 +61,7 @@ const predefinedQuestions = [
   },
   {
     value: 'admission-requirements',
-    label: 'What is the admission process ?',
+    label: 'What is the admission process?',
     icon: GraduationCap,
     response: `**Admission Process**
 Refer this PDF: https://drive.google.com/file/d/1Ar_T5af0H69cmLxIM0asxcAKn5Vevzcp/view?usp=sharing`
@@ -84,9 +84,9 @@ Admissions are based on merit. Once the merit list is announced, shortlisted stu
   },
   {
     value: 'admission-link',
-    label: 'How I can start my admission processes online?',
+    label: 'How can I start my admission processes online?',
     icon: LinkIcon,
-    response: "You can start your admission processes online, while refering this link: https://youtu.be/mHH2YKNuihw\nand refer PDF: https://pdf.ac/2SpmH1"
+    response: "You can start your admission processes online, by referring this link: https://youtu.be/mHH2YKNuihw\nand refer PDF: https://pdf.ac/2SpmH1"
   },
   {
     value: 'pre-admission-profile-creation',
@@ -132,7 +132,7 @@ Admissions are based on merit. Once the merit list is announced, shortlisted stu
   },
   {
     value: 'College-location',
-    label: 'Where B. K. Birla Night College is Located?',
+    label: 'Where is B. K. Birla Night College Located?',
     icon: MapPin,
     response: `**Here is the Google Map location of B. K. Birla Night College, Kalyan:**
 🔗B.K. Birla Night College on Google Maps: https://shorturl.at/vKzDC
@@ -143,9 +143,9 @@ Maharashtra 421301, India`
   },
   {
     value: 'Offical-page',
-    label: 'Offical Connects',
+    label: 'Official Connects',
     icon: Contact,
-    response: `**Offical Website:**
+    response: `**Official Website:**
 https://bkbirlanightcollegekalyan.com/
 
 **Instagram:**
@@ -164,7 +164,7 @@ https://www.youtube.com/@B.K.BIRLANIGHTCOLLEGEKALYAN`
     response: "Life at our college is vibrant, enriching, and thoughtfully designed to support every student's growth, especially working students who benefit from convenient class timings. With a faculty that's not just qualified but deeply committed, students receive quality education in a secure, inclusive environment. The campus buzzes with energy—from well-equipped science labs that spark innovation, to active participation in state and national-level platforms like Aavishkar, Ideathon (Mumbai), RT-MSSU Ideation, and SBI Youth Ideation. Beyond academics, students engage in a dynamic mix of co-curricular and extracurricular activities including Sports, NCC, NSS, and cultural fests, shaping holistic development. The college also offers scholarships through management, easing financial burdens for many. A strong Training and Placement Cell prepares students for the real world, while the Mpower Cell provides personal counseling to ensure mental well-being. Altogether, student life here is a balanced blend of learning, leadership, and lifelong memories."
   },
   {
-    value: 'Achievements',
+    value: 'achievements',
     label: 'College Achievements',
     icon: Award,
     response: `**SBI COLLEGE YOUTH IDEATION 2024**
@@ -173,7 +173,7 @@ Mr. Vansh Shah, Mr. Sachin Verma, and Mr. Vikram Chaudhari from FYBFM, B.K. Birl
 
 (See more on Instagram: https://www.instagram.com/p/DITyZeTKi8Z/?img_index=1)
 
-**Sports Achivement: South Asian Triathlon Championship**
+**Sports Achievement: South Asian Triathlon Championship**
 
 Ms. Dolly Devidas Patil of FYBCom, B.K. Birla Night College, Kalyan, has brought immense pride to the institution by winning the Gold Medal at the South Asian Triathlon Championship held in Nepal on 25th and 26th April 2024. Her outstanding performance at this prestigious international event showcases her unwavering dedication, athletic excellence, and commitment to representing both her college and country with honor. This remarkable accomplishment stands as an inspiration to all aspiring athletes and a proud moment for the entire BKBNC family.
 
@@ -367,7 +367,7 @@ function ChatInterface() {
             {
               id: errorAiMessageId,
               sender: 'ai',
-              text: 'Kindly Contact College For Further Assitance.',
+              text: 'Kindly Contact College For Further Assistance.',
             },
           ]);
         } finally {
