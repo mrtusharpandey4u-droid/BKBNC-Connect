@@ -51,13 +51,13 @@ const predefinedQuestions = [
     value: 'Timings',
     label: 'What Are The College Timings ?',
     icon: Clock10Icon,
-    response: "The Working Hours of B. K. Birla Night College Kalyan is: 4:00 pm to 8:00 pm "
+    response: "The Working Hours of B. K. Birla Night College Kalyan is: 2:00 pm to 8:00 pm "
   },
   {
     value: 'Inquiry Admission',
     label: 'What Are The Inquiry Timings For The College ?',
     icon: Clock11Icon,
-    response: "The Inquiry Hours of B. K. Birla Night College Kalyan is: 1:00 pm to 5:00 pm"
+    response: "The Inquiry Hours of B. K. Birla Night College Kalyan is: 2:00 pm to 8:00 pm"
   },
   {
     value: 'admission-requirements',
@@ -135,7 +135,7 @@ Admissions are based on merit. Once the merit list is announced, shortlisted stu
     label: 'Where is B. K. Birla Night College Located?',
     icon: MapPin,
     response: `**Here is the Google Map location of B. K. Birla Night College, Kalyan:**
-🔗B.K. Birla Night College on Google Maps: https://shorturl.at/vKzDC
+🔗B.K. Birla Night College on Google Maps: https://maps.app.goo.gl/TSUe292ZXZwJz41KA
 📍 **Address on Map:**
 B.K. Birla College of Arts, Science & Commerce,
 Birla College Road, Kalyan West,
