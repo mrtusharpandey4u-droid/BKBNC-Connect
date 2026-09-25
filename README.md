@@ -15,12 +15,3 @@
 - **State Management**: React Hooks (useState, useEffect) & Server Actions.
 
 ---
-
-### 📝 For your CV (Experience/Project Section)
-
-**BKBNC Connect | Full-Stack AI Developer**
-- Engineered a conversational AI chatbot using **Next.js 15** and **Google Genkit** to automate student support for B. K. Birla Night College.
-- Integrated **Gemini 1.5 Flash** via Genkit Flows to process complex institutional queries with high accuracy and low latency.
-- Developed a high-performance, responsive frontend using **React**, **TypeScript**, and **Tailwind CSS**, achieving a modern and accessible user interface.
-- Implemented **Server Actions** for secure AI processing, reducing client-side overhead and improving application security.
-- Designed a custom theme and interactive components using **ShadCN UI**, ensuring a professional and consistent brand identity.
